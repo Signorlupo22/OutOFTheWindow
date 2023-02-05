@@ -34,4 +34,11 @@ public class LevelInfo {
 		}
 		
 	}
+	
+	
+	public void repaint(){
+		for(GamePanel s : panel) {
+			s.repaint();
+		}
+	}
 }

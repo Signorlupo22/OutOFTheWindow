@@ -31,12 +31,6 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.fillRect(xDelta , yDelta , 100, 50);
-		frame++;
-		if(System.currentTimeMillis() - lastCheck >= 1000) {
-			lastCheck = System.currentTimeMillis();
-			System.out.println("FPS: " +frame );
-			frame = 0;
-		}
-		repaint();
+
 	}
 }
