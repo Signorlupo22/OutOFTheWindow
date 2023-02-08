@@ -27,8 +27,8 @@ public class GamePanel extends JPanel {
 		this.yDelta = pos.getY();
 		
 	}
-	
 	public void paintComponent(Graphics g) {
+		
 		super.paintComponent(g);
 		g.fillRect(xDelta , yDelta , 100, 50);
 

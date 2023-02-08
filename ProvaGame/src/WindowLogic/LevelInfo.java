@@ -18,27 +18,52 @@ public class LevelInfo {
 		int i = 0;
 		for(ShellLevel s : shell) {
 			panel[i] = new GamePanel();
-			s = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i);
+			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i);
 			i++;
 		}
 	}
 	
 	
 	public void SnapShell() {
+		//dovresti capirlo dal nome
+		
 		int i = 0;
+		
+		//aggiorna il vettore delle poszioni
 		for(ShellLevel s : shell) {
-			posOfShell[i].setX((int)s.jframe.getLocation().getX());
-			posOfShell[i].setY((int)s.jframe.getLocation().getY());
-			i++;
-			
+			if(s != null) {
+				posOfShell[i].setX((int)s.jframe.getLocation().getX());
+				posOfShell[i].setY((int)s.jframe.getLocation().getY());
+				i++; 
+			}
 		}
+		
+		
+		//se sono in un range fare lo snap
+		
+		
+		//for(int c = 0; c < shellCount; c++) {
+		//	for(int j = 0; j < shellCount; j++) {
+		//		if(posOfShell[c].equals(posOfShell[j], new Vector2(shell[j].jframe.getWidth()+ 10,shell[j].jframe.getHeight() + 10)) && c != j){
+		//			Vector2 pos = new Vector2(posOfShell[c].getX() + 400, posOfShell[c].getY());
+		//			shell[j].jframe.setLocation(pos);
+		//		}
+		//	}
+		//}
+		Vector2 pos = new Vector2(posOfShell[0].getX() + 400, posOfShell[0].getY());
+		shell[1].jframe.setLocation(pos);
 		
 	}
 	
 	
 	public void repaint(){
+		
+		//update
 		for(GamePanel s : panel) {
 			s.repaint();
 		}
+		
+		
+		SnapShell();
 	}
 }

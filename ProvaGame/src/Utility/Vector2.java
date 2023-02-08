@@ -51,4 +51,19 @@ public class Vector2 {
 	public int getDirY() {
 		return (int)Math.signum(y);
 	}
+	
+	public String toString() {
+		return this.x+ "," + this.y;
+	}
+	
+	public boolean equals(Vector2 pos){
+		if(pos == null) return false;
+		return pos.x == this.x && pos.y == pos.x;
+	}
+	
+	
+	public boolean equals(Vector2 pos, Vector2 range){
+		if(pos == null) return false;
+		return (Math.abs(pos.x - this.x) < range.x && Math.abs(pos.y - this.y) < range.y );
+	}
 }
