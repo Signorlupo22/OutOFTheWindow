@@ -14,16 +14,31 @@ import Utility.Vector2;
 public class GamePanel extends JPanel {
 	private int  xDelta= 100, yDelta = 100;
 	
-	private BufferedImage img ,subImage;
+	private BufferedImage img;
+	private BufferedImage[] idleAnim;
 	
+	private int aniTick , aniIndex , aniSpeed = 15;
 	public GamePanel() {
 		setPanelSize();
+		
 		importImg();
+		
+		loadAnimation();
+		
 	}
 	
+	private void loadAnimation() {
+		// TODO Auto-generated method stub
+		idleAnim = new BufferedImage[5];
+		
+		for (int i = 0; i < idleAnim.length; i++) {
+			idleAnim[i] = img.getSubimage(i * 150, 0, 150, 210);
+		}
+	}
+
 	private void importImg() {
 		// TODO Auto-generated method stub
-		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
+		InputStream is = getClass().getResourceAsStream("/idle.png");
 		
 		try {
 			img = ImageIO.read(is);
@@ -64,10 +79,23 @@ public class GamePanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		
-		subImage = img.getSubimage(1*64, 8*40, 64, 40);
-		g.drawImage(subImage, xDelta, yDelta,128,80,null);
+		updateAnimationTick();
+		g.drawImage(idleAnim[aniIndex], xDelta, yDelta,150 / 3,210 / 3,null);
 		
 
+	}
+
+	private void updateAnimationTick() {
+		// TODO Auto-generated method stub
+		aniTick++;
+		if(aniTick >= aniSpeed) {
+			aniTick = 0;
+			aniIndex ++;
+			
+			if(aniIndex >= idleAnim.length)
+				aniIndex = 0;
+		}
+		
+		
 	}
 }
