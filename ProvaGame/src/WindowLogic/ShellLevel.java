@@ -29,10 +29,14 @@ public class ShellLevel {
 		Dim = new Vector2(400,400);
 		pos = new Vector2(0,0);
 		
-		jframe.setSize(Dim, numShell, panel);
 		jframe.setLocation(pos);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.add(panel);
+		jframe.setResizable(false);
+		jframe.pack();
+		
+		
+		
 		jframe.setVisible(true);
 	}
 	
@@ -46,7 +50,7 @@ public class ShellLevel {
 		pos = new Vector2(xpos,ypos);
 		
 		//metto le dimesioni (con un Vector2 perche ho fatto un override della funzione)
-		jframe.setSize(Dim, num, panel);
+		//jframe.setSize(Dim, num, panel);
 		
 		jframe.setLocation(pos);
 		//se chiudi una chiudi tutte 
@@ -54,6 +58,8 @@ public class ShellLevel {
 		
 		//aggiugnere la grafica all frame 
 		jframe.add(panel);
+		jframe.setResizable(false);
+		jframe.pack();
 		
 		//la rendo visibile
 		jframe.setVisible(true);

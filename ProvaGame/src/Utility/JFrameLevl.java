@@ -20,6 +20,7 @@ public class JFrameLevl extends JFrame {
 		this.numShell = numShell;
 		
 		this.gamePanel = gamePanel;
+		
 		mouseInput = new MouseInputs(numShell, gamePanel);
 		
 		KeyboardInputs keyListener = new KeyboardInputs(numShell, this.gamePanel);
@@ -27,6 +28,7 @@ public class JFrameLevl extends JFrame {
 		addKeyListener(keyListener);
 		addMouseListener(mouseInput);
 		addMouseMotionListener(mouseInput);
+		
 	}
 	
 	public void setSize(Vector2 v, int numSell, GamePanel gamePanel) {

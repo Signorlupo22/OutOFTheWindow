@@ -1,4 +1,5 @@
 package WindowLogic;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.*;
@@ -7,11 +8,11 @@ import Inputs.KeyboardInputs;
 import Utility.Vector2;
 
 public class GamePanel extends JPanel {
-	private int frame = 0;
-	private long lastCheck = 0;
 	private int  xDelta= 100, yDelta = 100;
 	
-	
+	public GamePanel() {
+		setPanelSize();
+	}
 	
 	public void ChangeXdelta(int value) {
 		this.xDelta += value;
@@ -27,10 +28,16 @@ public class GamePanel extends JPanel {
 		this.yDelta = pos.getY();
 		
 	}
+	private void setPanelSize() {
+		Dimension size = new Dimension(400,400);
+		setMaximumSize(size);
+		setMinimumSize(size);
+		setPreferredSize(size);
+		
+	}
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
-		g.fillRect(xDelta , yDelta , 100, 50);
 
 	}
 }

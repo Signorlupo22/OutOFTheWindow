@@ -8,11 +8,12 @@ import java.awt.*;
 public class LevelInfo {
 	private ShellLevel shell[];
 	private GamePanel panel[];
-	int shellCount = 4;
+	int shellCount = 5;
 	private Vector2 posOfShell[]= {new Vector2(100,100),new Vector2(500,400),new Vector2(900,700),new Vector2(1400,500),new Vector2(100,100),};
+	Dimension size;
 	
 	public LevelInfo() {
-		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+		size = Toolkit.getDefaultToolkit().getScreenSize();
 		shell = new ShellLevel[shellCount];
 		panel = new GamePanel[shellCount];
 		int i = 0;
@@ -38,21 +39,17 @@ public class LevelInfo {
 			}
 		}
 		
+		//prova dello snap
+		Vector2 pos = new Vector2(posOfShell[0].getX() + 410, posOfShell[0].getY());
 		
-		//se sono in un range fare lo snap
-		
-		
-		//for(int c = 0; c < shellCount; c++) {
-		//	for(int j = 0; j < shellCount; j++) {
-		//		if(posOfShell[c].equals(posOfShell[j], new Vector2(shell[j].jframe.getWidth()+ 10,shell[j].jframe.getHeight() + 10)) && c != j){
-		//			Vector2 pos = new Vector2(posOfShell[c].getX() + 400, posOfShell[c].getY());
-		//			shell[j].jframe.setLocation(pos);
-		//		}
-		//	}
-		//}
-		Vector2 pos = new Vector2(posOfShell[0].getX() + 400, posOfShell[0].getY());
 		shell[1].jframe.setLocation(pos);
 		
+		//Dovrebbe bloccare le dimesioni ma non la blocca (che fastidio)
+		//TODO Dimesione
+		
+		
+		//l'ultima shell sta in alto a destra per dire quali sono collegate
+		shell[shell.length-1].jframe.setLocation(size.width - 400,0);
 	}
 	
 	
@@ -62,8 +59,6 @@ public class LevelInfo {
 		for(GamePanel s : panel) {
 			s.repaint();
 		}
-		
-		
 		SnapShell();
 	}
 }
