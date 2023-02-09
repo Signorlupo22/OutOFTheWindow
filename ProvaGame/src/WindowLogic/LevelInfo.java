@@ -6,9 +6,10 @@ import Utility.Vector2;
 import java.awt.*;
 
 public class LevelInfo {
-	private ShellLevel shell[];
+	private ShellLevel shell[], editorShell;
 	private GamePanel panel[];
-	int shellCount = 5;
+	private EditorMappa editor;
+	int shellCount = 3;
 	private Vector2 posOfShell[]= {new Vector2(100,100),new Vector2(500,400),new Vector2(900,700),new Vector2(1400,500),new Vector2(100,100),};
 	Dimension size;
 	
@@ -16,12 +17,16 @@ public class LevelInfo {
 		size = Toolkit.getDefaultToolkit().getScreenSize();
 		shell = new ShellLevel[shellCount];
 		panel = new GamePanel[shellCount];
+		editor = new EditorMappa();
+		
+		
 		int i = 0;
 		for(ShellLevel s : shell) {
 			panel[i] = new GamePanel();
 			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i);
 			i++;
 		}
+		editorShell = new ShellLevel(editor, i);
 	}
 	
 	
@@ -49,7 +54,7 @@ public class LevelInfo {
 		
 		
 		//l'ultima shell sta in alto a destra per dire quali sono collegate
-		shell[shell.length-1].jframe.setLocation(size.width - 400,0);
+		editorShell.jframe.setLocation(size.width - 650,size.height - 500);
 	}
 	
 	

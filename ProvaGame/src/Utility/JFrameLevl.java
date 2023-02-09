@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import Inputs.KeyboardInputs;
 import Inputs.MouseInputs;
+import WindowLogic.EditorMappa;
 import WindowLogic.GamePanel;
 
 public class JFrameLevl extends JFrame {
@@ -30,6 +31,8 @@ public class JFrameLevl extends JFrame {
 		addMouseMotionListener(mouseInput);
 		
 	}
+	
+	
 	
 	public void setSize(Vector2 v, int numSell, GamePanel gamePanel) {
 		if(v == null) return;

@@ -1,4 +1,6 @@
 package WindowLogic;
+
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,27 +8,26 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
-import Inputs.KeyboardInputs;
-import Utility.Vector2;
-
-public class GamePanel extends JPanel {
-	private int  xDelta= 100, yDelta = 100;
+public class EditorMappa extends GamePanel {
+	private BufferedImage bg;
 	
-	private BufferedImage img ,subImage;
 	
-	public GamePanel() {
+	public EditorMappa() {
 		setPanelSize();
 		importImg();
 	}
 	
+	
+	
 	private void importImg() {
 		// TODO Auto-generated method stub
-		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
+		InputStream is = getClass().getResourceAsStream("/Map.png");
 		
 		try {
-			img = ImageIO.read(is);
+			bg = ImageIO.read(is);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,34 +40,21 @@ public class GamePanel extends JPanel {
 			}
 		}
 	}
-
-	public void ChangeXdelta(int value) {
-		this.xDelta += value;
-	}
-	public void ChangeYdelta(int value) {
-		this.yDelta += value;
-
-	}
 	
-	
-	public void setPosMouse(Vector2 pos) {
-		this.xDelta = pos.getX();
-		this.yDelta = pos.getY();
-		
-	}
 	private void setPanelSize() {
-		Dimension size = new Dimension(400,400);
+		Dimension size = new Dimension(650,400);
 		setMaximumSize(size);
 		setMinimumSize(size);
 		setPreferredSize(size);
 		
 	}
+	
+	
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);
 		
-		subImage = img.getSubimage(1*64, 8*40, 64, 40);
-		g.drawImage(subImage, xDelta, yDelta,128,80,null);
+		g.drawImage(bg, 0, 0,650,400,null);
 		
 
 	}

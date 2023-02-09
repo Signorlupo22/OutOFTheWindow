@@ -40,6 +40,22 @@ public class ShellLevel {
 		jframe.setVisible(true);
 	}
 	
+	public ShellLevel(EditorMappa panel, int numShell) {
+		jframe = new JFrameLevl(numShell, panel);
+		Dim = new Vector2(400,400);
+		pos = new Vector2(0,0);
+		
+		jframe.setLocation(pos);
+		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jframe.add(panel);
+		jframe.setResizable(false);
+		jframe.pack();
+		
+		
+		
+		jframe.setVisible(true);
+	}
+	
 	
 	public ShellLevel(int xpos,int ypos, int xdim,int ydim, GamePanel panel, int num) {
 		//creo il frame (dentro ce anche il keyboard listener)
