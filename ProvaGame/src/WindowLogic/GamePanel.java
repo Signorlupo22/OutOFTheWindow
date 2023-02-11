@@ -1,3 +1,11 @@
+/*
+ * motore grafico (ancora non so cosa sia)
+ * 
+*/
+
+
+
+
 package WindowLogic;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -27,7 +35,7 @@ public class GamePanel extends JPanel {
 		
 	}
 	
-	private void loadAnimation() {
+	private void loadAnimation() { ///metodo per leggere l'immagine del personaggio
 		// TODO Auto-generated method stub
 		idleAnim = new BufferedImage[5];
 		
@@ -36,7 +44,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	private void importImg() {
+	private void importImg() { ///carica l'immagine del personaggio
 		// TODO Auto-generated method stub
 		InputStream is = getClass().getResourceAsStream("/idle.png");
 		
@@ -55,7 +63,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	public void ChangeXdelta(int value) {
+	public void ChangeXdelta(int value) { 
 		this.xDelta += value;
 	}
 	public void ChangeYdelta(int value) {
@@ -76,7 +84,7 @@ public class GamePanel extends JPanel {
 		setPreferredSize(size);
 		
 	}
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) { ///aggiornamento della singola shell
 		
 		super.paintComponent(g);
 		updateAnimationTick();
