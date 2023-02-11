@@ -28,7 +28,7 @@ public class JFrameLevl extends JFrame {
 		
 		addKeyListener(keyListener);
 		addMouseListener(mouseInput);
-		addMouseMotionListener(mouseInput);
+		addMouseMotionListener(mouseInput);//commento di prova
 		
 	}
 	
