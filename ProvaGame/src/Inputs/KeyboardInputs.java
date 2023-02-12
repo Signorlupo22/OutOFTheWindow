@@ -19,22 +19,22 @@ public class KeyboardInputs implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
-
+ 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			gamePanel.setDireciotn(UP);
+			gamePanel.getGame().getPlayer().setDireciotn(UP);
 			break;
 		case KeyEvent.VK_A:
-			gamePanel.setDireciotn(LEFT);
+			gamePanel.getGame().getPlayer().setDireciotn(LEFT);
 			break;
 		case KeyEvent.VK_S:
-			gamePanel.setDireciotn(DOWN);
+			gamePanel.getGame().getPlayer().setDireciotn(DOWN);
 			break;
 		case KeyEvent.VK_D:
-			gamePanel.setDireciotn(RIGHR);
+			gamePanel.getGame().getPlayer().setDireciotn(RIGHR);
 			break;
 		default:
 			break;
@@ -49,7 +49,7 @@ public class KeyboardInputs implements KeyListener{
 		case KeyEvent.VK_A:
 		case KeyEvent.VK_S:
 		case KeyEvent.VK_D:
-			gamePanel.setMoving(false);
+			gamePanel.getGame().getPlayer().setMoving(false);
 		default:
 			break;
 		}

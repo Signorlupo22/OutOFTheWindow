@@ -9,6 +9,7 @@
 package WindowLogic;
 import java.lang.Math;
 
+import MainGame.MainGame;
 import Utility.Vector2;
 
 import java.awt.*;
@@ -26,7 +27,8 @@ public class LevelInfo {
 	
 	
 	
-	public LevelInfo() { ///costruttore di default
+	public LevelInfo( MainGame m) { ///costruttore di default
+		
 		size = Toolkit.getDefaultToolkit().getScreenSize(); ///dimensioni dello schermo
 		shell = new ShellLevel[shellCount]; ///crea le varie shell
 		panel = new GamePanel[shellCount]; ///grafica delle shell (Thomas dice motore grafico e io sorride� e annuir� senza capire)
@@ -35,7 +37,7 @@ public class LevelInfo {
 		
 		int i = 0;		///inizializza le shell
 		for(ShellLevel s : shell) {
-			panel[i] = new GamePanel(); ///inizializza il motore grafico
+			panel[i] = new GamePanel(m); ///inizializza il motore grafico
 			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i);
 			i++;
 		}
@@ -43,11 +45,8 @@ public class LevelInfo {
 	}
 	
 	
-	public void SnapShell() {
+	public void SnapShell(int index1 , int index2) {
 		//thomas sta facendo (dovrebbe attaccare le shell una all'altra)
-		
-		
-		
 		int i = 0;
 		
 		//aggiorna il vettore delle poszioni (chiamato ogni frame)
@@ -60,9 +59,9 @@ public class LevelInfo {
 		}
 		
 		//prova dello snap
-		Vector2 pos = new Vector2(posOfShell[0].getX() + 405, posOfShell[0].getY());
+		Vector2 pos = new Vector2(posOfShell[index1].getX() + 405, posOfShell[index1].getY());
 		
-		shell[1].jframe.setLocation(pos);
+		shell[index2].jframe.setLocation(pos);
 		
 		
 		//editor shell dovrebbe dire quali sono collegate. sta in basso a dx
@@ -71,15 +70,15 @@ public class LevelInfo {
 	
 	
 	public void repaint(){
-		
+		for(GamePanel s : panel) {
+			s.repaint();
+		}
 	}
 	
 	public void updateGame() {
 		//update
 		//update della grafica di ogni shell
-		for(GamePanel s : panel) {
-			s.repaint();
-		}
-		SnapShell();
+
+		SnapShell(1,2);
 	}
 }

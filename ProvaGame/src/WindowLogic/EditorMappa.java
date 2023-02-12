@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import MainGame.MainGame;
+
 public class EditorMappa extends GamePanel {
 	private BufferedImage bg;
 	

@@ -49,8 +49,8 @@ public class ShellLevel {
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.add(panel);
 		jframe.setResizable(false);
+		//jframe.setUndecorated(true);
 		jframe.pack();
-		
 		
 		
 		jframe.setVisible(true);
@@ -75,6 +75,7 @@ public class ShellLevel {
 		//aggiugnere la grafica all frame 
 		jframe.add(panel);
 		jframe.setResizable(false);
+		//jframe.setUndecorated(true);
 		jframe.pack();
 		
 		//la rendo visibile

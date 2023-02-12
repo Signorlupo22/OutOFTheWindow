@@ -1,5 +1,8 @@
 package MainGame; ///loop del gioco (chiama se stesso 200 volte al secondo. aggiornamento dello schermo 120 FPS)
 
+import java.awt.Graphics;
+
+import Entities.Player;
 import WindowLogic.LevelInfo;
 
 public class MainGame implements Runnable {
@@ -21,9 +24,20 @@ public class MainGame implements Runnable {
 	private final int FPS_SET = 120;
 	private LevelInfo game1;
 	private final int UPS_SET = 200;
+	
+	private Player player;
+	
 	public MainGame(){
-		game1 = new LevelInfo();
+		game1 = new LevelInfo(this);
+		initClasses();
 		startGameLoop();
+		
+	}
+
+	private void initClasses() {
+		// TODO Auto-generated method stub
+		player = new Player(200, 200);
+		
 	}
 
 	private void startGameLoop(){
@@ -33,7 +47,13 @@ public class MainGame implements Runnable {
 	
 
 	public void update() {
+		player.update();
 		game1.updateGame();
+	}
+	
+	public void render(Graphics g) {
+		if(player != null)
+			player.render(g);
 	}
 
 	@Override
@@ -78,5 +98,10 @@ public class MainGame implements Runnable {
 				updates = 0;
 			}
 		}
+	}
+	
+	
+	public Player getPlayer() {
+		return player;
 	}
 }	

@@ -6,12 +6,9 @@ public class Game {
 	
 	public Game(){
 		jframe  = new JFrame();
-		
-		
 		jframe.setSize(400,400);
 		jframe.setLocation(100, 100);
 		jframe.setVisible(true);
-
 	}
 	
 	public Object getpos() {
