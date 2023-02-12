@@ -21,9 +21,9 @@ public class Constants {
 		public static int GetSpriteAmount(int player_action){
 			switch (player_action) {
 			case IDLE:
-				return 5;
+				return 9;
 			case RUNNING:
-				return 6;
+				return 13;
 			default:
 				return 1;
 			}

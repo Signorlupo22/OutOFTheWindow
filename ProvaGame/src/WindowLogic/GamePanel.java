@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
 	private BufferedImage img;
 	private BufferedImage[][] animation;
 	
-	private int aniTick , aniIndex , aniSpeed = 15;
+	private int aniTick , aniIndex , aniSpeed = 5;
 	private int playerAction = IDLE;
 	private int playerDir = 0;
 	private boolean moving = false;
@@ -42,17 +42,17 @@ public class GamePanel extends JPanel {
 	
 	private void loadAnimation() { ///metodo per leggere l'immagine del personaggio
 		// TODO Auto-generated method stub
-		animation = new BufferedImage[9][6];
+		animation = new BufferedImage[2][14];
 		for(int j = 0; j < animation.length; j++) {
 			for (int i = 0; i < animation[j].length; i++) {
-				animation[j][i] = img.getSubimage(i * 64,  j* 40, 64, 40);
+				animation[j][i] = img.getSubimage(i * 151,  j* 191, 151, 192);
 			}	
 		}
 	}
 
 	private void importImg() { ///carica l'immagine del personaggio
 		// TODO Auto-generated method stub
-		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
+		InputStream is = getClass().getResourceAsStream("/Anim.png");
 		
 		try {
 			img = ImageIO.read(is);
@@ -99,7 +99,7 @@ public class GamePanel extends JPanel {
 		setAnimation();
 		updateAnimationTick();
 		updatePos();
-		g.drawImage(animation[playerAction][aniIndex], xDelta, yDelta,64,40,null);
+		g.drawImage(animation[playerAction][aniIndex], xDelta, yDelta,152 / 3 ,192 / 3,null);
 		
 
 	}
@@ -109,16 +109,16 @@ public class GamePanel extends JPanel {
 		if(moving) {
 			switch (playerDir) {
 			case LEFT:
-				xDelta -= 5;
+				xDelta -= 1;
 				break;
 			case UP:
-				yDelta -= 5;
+				yDelta -= 1;
 				break;
 			case RIGHR:
-				xDelta += 5;
+				xDelta += 1;
 				break;
 			case DOWN:
-				yDelta += 5;
+				yDelta += 1;
 				break;
 			default:
 				break;
