@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import WindowLogic.GamePanel;
 
+import static Utility.Constants.Direciotn.*;
 public class KeyboardInputs implements KeyListener{
 	private int numShell = 0;
 	private GamePanel gamePanel;
@@ -24,16 +25,16 @@ public class KeyboardInputs implements KeyListener{
 		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			gamePanel.ChangeYdelta(-5);
+			gamePanel.setDireciotn(UP);
 			break;
 		case KeyEvent.VK_A:
-			gamePanel.ChangeXdelta(-5);
+			gamePanel.setDireciotn(LEFT);
 			break;
 		case KeyEvent.VK_S:
-			gamePanel.ChangeYdelta(5);
+			gamePanel.setDireciotn(DOWN);
 			break;
 		case KeyEvent.VK_D:
-			gamePanel.ChangeXdelta(5);
+			gamePanel.setDireciotn(RIGHR);
 			break;
 		default:
 			break;
@@ -43,7 +44,15 @@ public class KeyboardInputs implements KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_W:
+		case KeyEvent.VK_A:
+		case KeyEvent.VK_S:
+		case KeyEvent.VK_D:
+			gamePanel.setMoving(false);
+		default:
+			break;
+		}
 	}
 
 }

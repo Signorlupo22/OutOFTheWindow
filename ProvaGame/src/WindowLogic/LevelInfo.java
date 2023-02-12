@@ -60,6 +60,10 @@ public class LevelInfo {
 	
 	public void repaint(){
 		
+
+	}
+	
+	public void updateGame() {
 		//update
 		for(GamePanel s : panel) {
 			s.repaint();
