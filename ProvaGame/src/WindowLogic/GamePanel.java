@@ -1,3 +1,11 @@
+/*
+ * motore grafico (ancora non so cosa sia)
+ * 
+*/
+
+
+
+
 package WindowLogic;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -32,7 +40,7 @@ public class GamePanel extends JPanel {
 		
 	}
 	
-	private void loadAnimation() {
+	private void loadAnimation() { ///metodo per leggere l'immagine del personaggio
 		// TODO Auto-generated method stub
 		animation = new BufferedImage[9][6];
 		for(int j = 0; j < animation.length; j++) {
@@ -42,7 +50,7 @@ public class GamePanel extends JPanel {
 		}
 	}
 
-	private void importImg() {
+	private void importImg() { ///carica l'immagine del personaggio
 		// TODO Auto-generated method stub
 		InputStream is = getClass().getResourceAsStream("/player_sprites.png");
 		
@@ -60,7 +68,8 @@ public class GamePanel extends JPanel {
 			}
 		}
 	}
-	
+
+
 	
 	public void setDireciotn(int direciotn) {
 		this.playerDir = direciotn;
@@ -83,7 +92,7 @@ public class GamePanel extends JPanel {
 		setPreferredSize(size);
 		
 	}
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) { ///aggiornamento della singola shell
 		
 		super.paintComponent(g);
 		
