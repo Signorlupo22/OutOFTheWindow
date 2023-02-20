@@ -17,6 +17,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import Utility.LoadSave;
 import Utility.Vector2;
 
 public class Player extends Entity{
@@ -53,11 +54,7 @@ public class Player extends Entity{
 	
 	private void loadAnimation() { ///metodo per leggere l'immagine del personaggio
 		
-		// TODO Auto-generated method stub
-		InputStream is = getClass().getResourceAsStream("/Anim.png");
-		
-		try {
-			BufferedImage img = ImageIO.read(is);
+			BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.PLAYER_ATLAS);
 			
 			animation = new BufferedImage[2][14];
 			for(int j = 0; j < animation.length; j++) {
@@ -65,20 +62,6 @@ public class Player extends Entity{
 					animation[j][i] = img.getSubimage(i * 151,  j* 191, 151, 192);
 				}	
 			}
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				is.close();
-			} catch (Exception e2) {
-				// TODO: handle exception
-				e2.printStackTrace();
-			}
-		}
-		
-		// TODO Auto-generated method stub
 
 	}
 	
@@ -134,5 +117,24 @@ public class Player extends Entity{
 	
 	void updatePosOfShell(Vector2 pos) {
 		this.posOfshell = pos;
+	}
+
+	public void UpdateGraphics(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(animation[playerAction][aniIndex], x, y,152 / 3 ,192 / 3,null);
+
+		
+	}
+	
+	
+	public void setPostion(int xa, int ya) {
+		super.x = xa;
+		super.y = ya;
+		updatePos();
+	}
+	
+	
+	public Vector2 getPostion() {
+		return new Vector2(x,y);
 	}
 }

@@ -16,6 +16,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Entities.Player;
 import Inputs.KeyboardInputs;
 import MainGame.MainGame;
 import Utility.Vector2;
@@ -26,11 +27,12 @@ public class GamePanel extends JPanel {
 
 	private boolean moving = false;
 	protected MainGame m;
+	private Player p;
 	public GamePanel() {
-		
 	}
-	public GamePanel(MainGame m) {
+	public GamePanel(MainGame m, Player p) {
 		this.m = m;
+		this.p = p;
 		setPanelSize();
 
 	}
@@ -42,13 +44,28 @@ public class GamePanel extends JPanel {
 		
 	}
 	public void paintComponent(Graphics g) { ///aggiornamento della singola shell
+		if(g == null) return;
+		
 		super.paintComponent(g);
-		if(m != null)
-			m.render(g);
+		if(p != null) {
+			p.update();
+			p.UpdateGraphics(g);
+		}
+		
 	}
 	
 	public MainGame getGame() {
 		return m;
 	}
+	
+	public void repaint() {
+		paintComponent(getGraphics());
+	}
+	public Player getPlayer() {
+		// TODO Auto-generated method stub
+		//prendere il player in base alla shell
+		return p;
+	}
+	
 
 }

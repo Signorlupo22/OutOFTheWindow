@@ -25,8 +25,6 @@ public class MainGame implements Runnable {
 	private LevelInfo game1;
 	private final int UPS_SET = 200;
 	
-	private Player player;
-	
 	public MainGame(){
 		game1 = new LevelInfo(this);
 		initClasses();
@@ -36,7 +34,6 @@ public class MainGame implements Runnable {
 
 	private void initClasses() {
 		// TODO Auto-generated method stub
-		player = new Player(200, 200);
 		
 	}
 
@@ -47,13 +44,13 @@ public class MainGame implements Runnable {
 	
 
 	public void update() {
-		player.update();
-		game1.updateGame();
+		if(game1 != null)
+			game1.updateGame();
 	}
 	
-	public void render(Graphics g) {
-		if(player != null)
-			player.render(g);
+	public void render() {
+		if(game1 != null)
+			game1.repaint();
 	}
 
 	@Override
@@ -86,7 +83,7 @@ public class MainGame implements Runnable {
 				deltaU --;
 			}
 			if(deltaF >= 1) {
-				game1.repaint();
+				render();
 				frame++;
 				deltaF --;
 			}
@@ -99,9 +96,12 @@ public class MainGame implements Runnable {
 			}
 		}
 	}
-	
-	
+
 	public Player getPlayer() {
-		return player;
+		// TODO Auto-generated method stub
+		//prendere il player in base
+		return null;
 	}
+	
+	
 }	

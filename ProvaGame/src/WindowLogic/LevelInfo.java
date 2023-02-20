@@ -9,6 +9,7 @@
 package WindowLogic;
 import java.lang.Math;
 
+import Entities.Player;
 import MainGame.MainGame;
 import Utility.Vector2;
 
@@ -19,9 +20,14 @@ public class LevelInfo {
 	private GamePanel panel[];
 	private EditorMappa editor;
 	int shellCount = 3;
+	
+	int activePlayer = 0;
+	boolean entrato[] = {false,false,false,false,false,false};
+	
 	private Vector2 posOfShell[]= {new Vector2(100,100),new Vector2(500,400),new Vector2(900,700),new Vector2(1400,500),new Vector2(100,100),};
 	Dimension size;
 	
+	Player player[] = new Player[shellCount];
 	
 	///ci sar� un costruttore con tutte le varie info (numero di shell)
 	
@@ -37,11 +43,14 @@ public class LevelInfo {
 		
 		int i = 0;		///inizializza le shell
 		for(ShellLevel s : shell) {
-			panel[i] = new GamePanel(m); ///inizializza il motore grafico
-			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i);
+			player[i] = new Player(100,200);
+			panel[i] = new GamePanel(m, player[i]); ///inizializza il motore grafico
+			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i,this, player[i]);
 			i++;
 		}
-		editorShell = new ShellLevel(editor, i);
+		editorShell = new ShellLevel(editor, i,this);
+		
+		
 	}
 	
 	
@@ -71,14 +80,29 @@ public class LevelInfo {
 	
 	public void repaint(){
 		for(GamePanel s : panel) {
+			//aggiornare le singole shelllllllllllllllllllllllllllllll
 			s.repaint();
 		}
+		
+		
 	}
 	
 	public void updateGame() {
 		//update
-		//update della grafica di ogni shell
-
 		SnapShell(1,2);
+
+	}
+	
+
+	public Player getPlayer() {
+		if(player[activePlayer].getPostion().getX() > 421 && activePlayer < shellCount - 1) {
+			activePlayer++;
+			shell[activePlayer].PlayerEntra();
+		}else if(player[activePlayer].getPostion().getX() < -46 && activePlayer > 0  ) {
+			activePlayer--;
+			shell[activePlayer].PlayerEsce();
+		}
+		return player[activePlayer];
+
 	}
 }

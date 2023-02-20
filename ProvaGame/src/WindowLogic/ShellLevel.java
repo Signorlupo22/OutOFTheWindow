@@ -1,6 +1,7 @@
 package WindowLogic;
 import javax.swing.JFrame;
 
+import Entities.Player;
 import Inputs.KeyboardInputs;
 import Utility.*;
 
@@ -13,19 +14,23 @@ public class ShellLevel {
 	private Vector2 pos;
 	private Vector2 Dim;
 	//poszione delle porte
-	private Vector2[] posDoor;
+	private Vector2[] posDoor = {new Vector2(-45,300),new Vector2(420,200)};
 	
 	//posizione fissa della dimensionede della shell
 	private boolean PosFissa;
 	//dimesione fissa
 	private boolean DimFissa;
 	
-	
-	//input forse
+	private LevelInfo lvlInfo;
+	private GamePanel panel;
+	private Player p;
 
 	
-	public ShellLevel(GamePanel panel, int numShell) {
-		jframe = new JFrameLevl(numShell, panel);
+	public ShellLevel(GamePanel panel, int numShell, LevelInfo lvlInfo, Player p) {
+		this.panel = panel;
+		this.lvlInfo = lvlInfo;
+		this.p = p;
+		jframe = new JFrameLevl(numShell, panel,this.lvlInfo);
 		Dim = new Vector2(400,400);
 		pos = new Vector2(0,0);
 		
@@ -34,14 +39,13 @@ public class ShellLevel {
 		jframe.add(panel);
 		jframe.setResizable(false);
 		jframe.pack();
-		
-		
-		
 		jframe.setVisible(true);
+		SetFristPos();
 	}
 	
-	public ShellLevel(EditorMappa panel, int numShell) {
-		jframe = new JFrameLevl(numShell, panel);
+	public ShellLevel(EditorMappa panel, int numShell, LevelInfo lvlInfo) {
+		this.lvlInfo = lvlInfo;
+		jframe = new JFrameLevl(numShell, panel,this.lvlInfo);
 		Dim = new Vector2(400,400);
 		pos = new Vector2(0,0);
 		
@@ -57,9 +61,12 @@ public class ShellLevel {
 	}
 	
 	
-	public ShellLevel(int xpos,int ypos, int xdim,int ydim, GamePanel panel, int num) {
+	public ShellLevel(int xpos,int ypos, int xdim,int ydim, GamePanel panel, int num,LevelInfo lvlInfo, Player p) {
 		//creo il frame (dentro ce anche il keyboard listener)
-		jframe = new JFrameLevl(num, panel);
+		this.panel = panel;
+		this.lvlInfo = lvlInfo;
+		this.p = p;
+		jframe = new JFrameLevl(num, panel,this.lvlInfo);
 		
 		//creo i vector2
 		Dim = new Vector2(xdim,ydim);
@@ -80,6 +87,28 @@ public class ShellLevel {
 		
 		//la rendo visibile
 		jframe.setVisible(true);
+		SetFristPos();
+	}
+	
+	
+	public void PlayerEntra() {
+		if(panel != null) {
+			panel.getPlayer().setPostion(posDoor[0].getX(), posDoor[0].getY());
+			
+		}
+	}
+	public void SetFristPos() {
+		if(panel != null) {
+			panel.getPlayer().setPostion(-45, posDoor[0].getY());
+			
+		}
+	}
+	
+	public void PlayerEsce() {
+		if(panel != null) {
+			panel.getPlayer().setPostion(posDoor[1].getX(), posDoor[1].getY());
+			
+		}
 	}
 	
 }

@@ -9,22 +9,25 @@ import Inputs.KeyboardInputs;
 import Inputs.MouseInputs;
 import WindowLogic.EditorMappa;
 import WindowLogic.GamePanel;
+import WindowLogic.LevelInfo;
 
 public class JFrameLevl extends JFrame {
 	int numShell;
 	private MouseInputs mouseInput;
 	private GamePanel gamePanel;
-	public JFrameLevl(int numShell, GamePanel gamePanel) {
+	private LevelInfo lvlInfo;
+	public JFrameLevl(int numShell, GamePanel gamePanel, LevelInfo lvlInfo) {
 		
 		super.setTitle(numShell + "");
 		
 		this.numShell = numShell;
 		
 		this.gamePanel = gamePanel;
+		this.lvlInfo = lvlInfo;
 		
 		mouseInput = new MouseInputs(numShell, gamePanel);
 		
-		KeyboardInputs keyListener = new KeyboardInputs(numShell, this.gamePanel);
+		KeyboardInputs keyListener = new KeyboardInputs(numShell, this.gamePanel, lvlInfo);
 		
 		addKeyListener(keyListener);
 		addMouseListener(mouseInput);
@@ -34,14 +37,14 @@ public class JFrameLevl extends JFrame {
 	
 	
 	
-	public void setSize(Vector2 v, int numSell, GamePanel gamePanel) {
+	public void setSize(Vector2 v, int numSell, GamePanel gamePanel,LevelInfo lvlInfo) {
 		if(v == null) return;
 		this.gamePanel = gamePanel;
 		super.setSize(v.getX(), v.getY());
 		super.setTitle(numShell + "");		
-		KeyboardInputs keyListener = new KeyboardInputs(numShell,this.gamePanel);
+		KeyboardInputs keyListener = new KeyboardInputs(numShell,this.gamePanel,lvlInfo);
 		addKeyListener(keyListener);
-		
+		this.lvlInfo = lvlInfo; 
 		mouseInput = new MouseInputs(numShell, gamePanel);
 		addMouseListener(mouseInput);
 		addMouseMotionListener(mouseInput);

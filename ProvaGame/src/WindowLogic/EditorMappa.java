@@ -53,7 +53,7 @@ public class EditorMappa extends GamePanel {
 	
 	
 	public void paintComponent(Graphics g) {
-		
+		if(g == null) return;
 		super.paintComponent(g);
 		
 		g.drawImage(bg, 0, 0,650,400,null);

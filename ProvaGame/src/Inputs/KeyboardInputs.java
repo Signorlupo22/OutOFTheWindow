@@ -4,12 +4,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import WindowLogic.GamePanel;
+import WindowLogic.LevelInfo;
 
 import static Utility.Constants.Direciotn.*;
 public class KeyboardInputs implements KeyListener{
 	private int numShell = 0;
 	private GamePanel gamePanel;
-	public KeyboardInputs(int numShell, GamePanel gamepanel) {
+	private LevelInfo lvlInfo;
+	
+	public KeyboardInputs(int numShell, GamePanel gamepanel,LevelInfo level) {
+		this.lvlInfo = level;
 		this.numShell = numShell;
 		this.gamePanel = gamepanel;
 	}
@@ -25,16 +29,16 @@ public class KeyboardInputs implements KeyListener{
 		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_W:
-			gamePanel.getGame().getPlayer().setDireciotn(UP);
+			lvlInfo.getPlayer().setDireciotn(UP);
 			break;
 		case KeyEvent.VK_A:
-			gamePanel.getGame().getPlayer().setDireciotn(LEFT);
+			lvlInfo.getPlayer().setDireciotn(LEFT);
 			break;
 		case KeyEvent.VK_S:
-			gamePanel.getGame().getPlayer().setDireciotn(DOWN);
+			lvlInfo.getPlayer().setDireciotn(DOWN);
 			break;
 		case KeyEvent.VK_D:
-			gamePanel.getGame().getPlayer().setDireciotn(RIGHR);
+			lvlInfo.getPlayer().setDireciotn(RIGHR);
 			break;
 		default:
 			break;
@@ -49,7 +53,7 @@ public class KeyboardInputs implements KeyListener{
 		case KeyEvent.VK_A:
 		case KeyEvent.VK_S:
 		case KeyEvent.VK_D:
-			gamePanel.getGame().getPlayer().setMoving(false);
+			lvlInfo.getPlayer().setMoving(false);
 		default:
 			break;
 		}
