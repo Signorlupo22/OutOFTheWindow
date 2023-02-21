@@ -21,9 +21,18 @@ public class MainGame implements Runnable {
 	
 	
 	private Thread GameThread;
-	private final int FPS_SET = 120;
+	public final static int FPS_SET = 100;
 	private LevelInfo game1;
-	private final int UPS_SET = 200;
+	public final static int UPS_SET = 200;
+	
+	
+	public final static int TILE_DEFAULT_SIZE = 18;
+	public final static float SCALE = 2.0f;
+	public final static int TILES_IN_WIDTH = 12;
+	public final static int TILES_IN_HEIGHT = 13;
+	public final static int TILES_SIZE = (int)(TILE_DEFAULT_SIZE * SCALE);
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 	
 	public MainGame(){
 		game1 = new LevelInfo(this);
@@ -49,8 +58,7 @@ public class MainGame implements Runnable {
 	}
 	
 	public void render() {
-		if(game1 != null)
-			game1.repaint();
+
 	}
 
 	@Override
@@ -90,7 +98,7 @@ public class MainGame implements Runnable {
 			
 			if(System.currentTimeMillis() - lastCheck >= 1000) {
 				lastCheck = System.currentTimeMillis();
-				System.out.println("FPS: " +frame + "| UPS : " +updates);
+				//System.out.println("FPS: " +frame + "| UPS : " +updates);
 				frame = 0;
 				updates = 0;
 			}

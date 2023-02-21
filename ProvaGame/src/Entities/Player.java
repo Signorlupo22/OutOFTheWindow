@@ -17,8 +17,10 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import MainGame.MainGame;
 import Utility.LoadSave;
 import Utility.Vector2;
+import WindowLogic.LevelInfo;
 
 public class Player extends Entity{
 	
@@ -42,7 +44,6 @@ public class Player extends Entity{
 	}
 	
 	public void update() {
-		
 		setAnimation();
 		updateAnimationTick();
 		updatePos();
@@ -120,9 +121,8 @@ public class Player extends Entity{
 	}
 
 	public void UpdateGraphics(Graphics g) {
-		// TODO Auto-generated method stub
-		g.drawImage(animation[playerAction][aniIndex], x, y,152 / 3 ,192 / 3,null);
-
+		if(animation[playerAction][aniIndex] != null) 
+			g.drawImage(animation[playerAction][aniIndex], x, y,(int)(152 / 7 * MainGame.SCALE),(int)(192 / 7 * MainGame.SCALE ),null);
 		
 	}
 	

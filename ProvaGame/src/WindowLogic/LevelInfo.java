@@ -8,17 +8,21 @@
 
 package WindowLogic;
 import java.lang.Math;
+import java.util.concurrent.Semaphore;
 
 import Entities.Player;
 import MainGame.MainGame;
 import Utility.Vector2;
+import levels.LevelManager;
 
 import java.awt.*;
 
 public class LevelInfo {
 	private ShellLevel shell[], editorShell;
 	private GamePanel panel[];
+	private Thread thread[];
 	private EditorMappa editor;
+	private LevelManager levelSprite[];
 	int shellCount = 3;
 	
 	int activePlayer = 0;
@@ -29,6 +33,8 @@ public class LevelInfo {
 	
 	Player player[] = new Player[shellCount];
 	
+	
+	public static Semaphore semaphore = new Semaphore(1);
 	///ci sar� un costruttore con tutte le varie info (numero di shell)
 	
 	
@@ -38,14 +44,22 @@ public class LevelInfo {
 		size = Toolkit.getDefaultToolkit().getScreenSize(); ///dimensioni dello schermo
 		shell = new ShellLevel[shellCount]; ///crea le varie shell
 		panel = new GamePanel[shellCount]; ///grafica delle shell (Thomas dice motore grafico e io sorride� e annuir� senza capire)
+		levelSprite = new LevelManager[shellCount];
+		thread = new Thread[shellCount];
 		editor = new EditorMappa(); ///crea una shell editor
 		
 		
 		int i = 0;		///inizializza le shell
 		for(ShellLevel s : shell) {
 			player[i] = new Player(100,200);
-			panel[i] = new GamePanel(m, player[i]); ///inizializza il motore grafico
+			levelSprite[i] = new LevelManager(m,i);
+			panel[i] = new GamePanel(m, player[i], levelSprite[i]); ///inizializza il motore grafico
 			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i,this, player[i]);
+			
+			
+			//start ogni singolo thread
+			thread[i] = new Thread(panel[i]);
+			thread[i].start();
 			i++;
 		}
 		editorShell = new ShellLevel(editor, i,this);
@@ -68,7 +82,7 @@ public class LevelInfo {
 		}
 		
 		//prova dello snap
-		Vector2 pos = new Vector2(posOfShell[index1].getX() + 405, posOfShell[index1].getY());
+		Vector2 pos = new Vector2(posOfShell[index1].getX() + MainGame.GAME_WIDTH + 10, posOfShell[index1].getY());
 		
 		shell[index2].jframe.setLocation(pos);
 		
@@ -77,15 +91,6 @@ public class LevelInfo {
 		editorShell.jframe.setLocation(size.width - 650,size.height - 500);
 	}
 	
-	
-	public void repaint(){
-		for(GamePanel s : panel) {
-			//aggiornare le singole shelllllllllllllllllllllllllllllll
-			s.repaint();
-		}
-		
-		
-	}
 	
 	public void updateGame() {
 		//update

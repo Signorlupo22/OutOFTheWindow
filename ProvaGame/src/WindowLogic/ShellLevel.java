@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 
 import Entities.Player;
 import Inputs.KeyboardInputs;
+import MainGame.MainGame;
 import Utility.*;
 
 public class ShellLevel {
@@ -14,7 +15,7 @@ public class ShellLevel {
 	private Vector2 pos;
 	private Vector2 Dim;
 	//poszione delle porte
-	private Vector2[] posDoor = {new Vector2(-45,300),new Vector2(420,200)};
+	private Vector2[] posDoor = {new Vector2(-45,MainGame.TILES_SIZE * 9 ),new Vector2(420,MainGame.TILES_SIZE * 7)};
 	
 	//posizione fissa della dimensionede della shell
 	private boolean PosFissa;
