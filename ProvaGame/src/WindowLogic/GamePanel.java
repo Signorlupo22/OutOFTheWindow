@@ -43,8 +43,8 @@ public class GamePanel extends JPanel implements Runnable {
 		this.lvlDraw = lvlDraw;
 		this.m = m;
 		this.p = p;
-		setPanelSize();
-
+		setPanelSize(); 
+		
 	}
 	private void setPanelSize() {
 		Dimension size = new Dimension(MainGame.GAME_WIDTH,MainGame.GAME_HEIGHT);
@@ -53,19 +53,16 @@ public class GamePanel extends JPanel implements Runnable {
 		setPreferredSize(size);
 		
 	}
-	public synchronized  void paintComponent(Graphics g) { ///aggiornamento della singola shell
+	public  void paintComponent(Graphics g) { ///aggiornamento della singola shell
 		if(g == null) return;
-		//System.out.print("a");
 		super.paintComponent(g);
 		if(lvlDraw != null) {
 			lvlDraw.draw(g);
 		}
 		if(p != null) {
+			//aggiorna il player
 			p.UpdateGraphics(g);
 		}
-		//System.out.print("bbbbbbbbbbbb");
-		//System.out.println("o");
-
 	}
 	
 
@@ -78,10 +75,16 @@ public class GamePanel extends JPanel implements Runnable {
 		if(p != null)
 			p.update();
 	}
+	public void repaintt() {
+		repaint();
+	}
 	public Player getPlayer() {
 		// TODO Auto-generated method stub
 		//prendere il player in base alla shell
 		return p;
+	}
+	public LevelManager getLevelManager() {
+		return lvlDraw;
 	}
 	@Override
 	public void run() {
@@ -99,6 +102,8 @@ public class GamePanel extends JPanel implements Runnable {
 				
 				double deltaU = 0;
 				double deltaF = 0;
+				
+				
 				while(true) {
 					long currentTime = System.nanoTime();
 					
@@ -113,11 +118,14 @@ public class GamePanel extends JPanel implements Runnable {
 						deltaU --;
 					}
 					if(deltaF >= 1) {
-						repaint();
+						repaintt();
 						frame++;
 						deltaF --;
 					}
-					
+					if(oneTime == 0 && lvlDraw.getCurrentLevel() != null) {
+						initClass();
+						oneTime++;
+					}
 					if(System.currentTimeMillis() - lastCheck >= 1000) {
 						lastCheck = System.currentTimeMillis();
 						System.out.println("FPS: " +frame + "| UPS : " +updates);
@@ -125,6 +133,10 @@ public class GamePanel extends JPanel implements Runnable {
 						updates = 0;
 					}
 				}
+	}
+	
+	public void initClass() {
+		p.loadLevelData(lvlDraw.getCurrentLevel());
 	}
 	
 

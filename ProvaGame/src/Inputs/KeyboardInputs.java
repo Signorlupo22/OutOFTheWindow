@@ -28,33 +28,33 @@ public class KeyboardInputs implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W:
-			lvlInfo.getPlayer().setDireciotn(UP);
-			break;
 		case KeyEvent.VK_A:
-			lvlInfo.getPlayer().setDireciotn(LEFT);
-			break;
-		case KeyEvent.VK_S:
-			lvlInfo.getPlayer().setDireciotn(DOWN);
+			lvlInfo.getPlayer().setLeft(true);
 			break;
 		case KeyEvent.VK_D:
-			lvlInfo.getPlayer().setDireciotn(RIGHR);
+			lvlInfo.getPlayer().setRight(true);
+			break;
+		case KeyEvent.VK_SPACE:
+			lvlInfo.getPlayer().setJump(true);
 			break;
 		default:
 			break;
 		}
 	}
 
+
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_W:
 		case KeyEvent.VK_A:
-		case KeyEvent.VK_S:
+			lvlInfo.getPlayer().setLeft(false);
+			break;
+
 		case KeyEvent.VK_D:
-			lvlInfo.getPlayer().setMoving(false);
-		default:
+			lvlInfo.getPlayer().setRight(false);
+			break;
+		case KeyEvent.VK_SPACE:
+			lvlInfo.getPlayer().setJump(false);
 			break;
 		}
 	}

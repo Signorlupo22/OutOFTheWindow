@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import MainGame.MainGame;
+import Utility.LoadSave;
 
 public class EditorMappa extends GamePanel {
 	private BufferedImage bg;
@@ -25,22 +26,7 @@ public class EditorMappa extends GamePanel {
 	
 	
 	private void importImg() {
-		// TODO Auto-generated method stub
-		InputStream is = getClass().getResourceAsStream("/Map.png");
-		
-		try {
-			bg = ImageIO.read(is);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				is.close();
-			} catch (Exception e2) {
-				// TODO: handle exception
-				e2.printStackTrace();
-			}
-		}
+		bg = LoadSave.GetSpriteAtlas("Map.png");
 	}
 	
 	private void setPanelSize() {

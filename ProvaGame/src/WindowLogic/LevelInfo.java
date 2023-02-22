@@ -35,7 +35,7 @@ public class LevelInfo {
 	
 	
 	public static Semaphore semaphore = new Semaphore(1);
-	///ci sar� un costruttore con tutte le varie info (numero di shell)
+	///ci sar� un costruttore con tutte le varie info (numero di shell) 
 	
 	
 	
@@ -51,8 +51,8 @@ public class LevelInfo {
 		
 		int i = 0;		///inizializza le shell
 		for(ShellLevel s : shell) {
-			player[i] = new Player(100,200);
-			levelSprite[i] = new LevelManager(m,i);
+			player[i] = new Player(100,200,(int)(152 / 10 * MainGame.SCALE),(int)(191 / 10 * MainGame.SCALE) );
+			levelSprite[i] = new LevelManager(m, i);
 			panel[i] = new GamePanel(m, player[i], levelSprite[i]); ///inizializza il motore grafico
 			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i,this, player[i]);
 			
@@ -61,7 +61,7 @@ public class LevelInfo {
 			thread[i] = new Thread(panel[i]);
 			thread[i].start();
 			i++;
-		}
+		} 
 		editorShell = new ShellLevel(editor, i,this);
 		
 		
@@ -100,13 +100,23 @@ public class LevelInfo {
 	
 
 	public Player getPlayer() {
-		if(player[activePlayer].getPostion().getX() > 421 && activePlayer < shellCount - 1) {
+		
+		if(player[activePlayer].getPostion().getX() > 220 * MainGame.SCALE && activePlayer < shellCount - 1) {
+			player[activePlayer].resetDirBooleans();
+			player[activePlayer].resetInAir();
+			shell[activePlayer].PlayerEsce();
 			activePlayer++;
+			player[activePlayer].resetInAir();
 			shell[activePlayer].PlayerEntra();
-		}else if(player[activePlayer].getPostion().getX() < -46 && activePlayer > 0  ) {
+		}else if(player[activePlayer].getPostion().getX() < -32 * MainGame.SCALE && activePlayer > 0  ) {
+			player[activePlayer].resetDirBooleans();
+			player[activePlayer].resetInAir();
+			shell[activePlayer].PlayerEntra();
 			activePlayer--;
+			player[activePlayer].resetInAir();
 			shell[activePlayer].PlayerEsce();
 		}
+		System.out.println(activePlayer);
 		return player[activePlayer];
 
 	}

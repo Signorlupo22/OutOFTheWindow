@@ -35,6 +35,7 @@ public class MainGame implements Runnable {
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 	
 	public MainGame(){
+		//qua se ci sara se clicchi il play fara questo se no le altre classi con altri livelli
 		game1 = new LevelInfo(this);
 		initClasses();
 		startGameLoop();

@@ -14,8 +14,8 @@ public class ShellLevel {
 	//poszione della shell
 	private Vector2 pos;
 	private Vector2 Dim;
-	//poszione delle porte
-	private Vector2[] posDoor = {new Vector2(-45,MainGame.TILES_SIZE * 9 ),new Vector2(420,MainGame.TILES_SIZE * 7)};
+	//poszione delle porte 
+	private Vector2[] posDoor = {new Vector2((int)(-23 * MainGame.SCALE),MainGame.TILES_SIZE * 9 +3),new Vector2((int)(216 * MainGame.SCALE),MainGame.TILES_SIZE * 7 +3)};
 	
 	//posizione fissa della dimensionede della shell
 	private boolean PosFissa;
@@ -30,7 +30,7 @@ public class ShellLevel {
 	public ShellLevel(GamePanel panel, int numShell, LevelInfo lvlInfo, Player p) {
 		this.panel = panel;
 		this.lvlInfo = lvlInfo;
-		this.p = p;
+		this.p = p; 
 		jframe = new JFrameLevl(numShell, panel,this.lvlInfo);
 		Dim = new Vector2(400,400);
 		pos = new Vector2(0,0);

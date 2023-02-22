@@ -14,10 +14,12 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.MissingFormatArgumentException;
 
 import javax.imageio.ImageIO;
 
 import MainGame.MainGame;
+import Utility.HelperMethods;
 import Utility.LoadSave;
 import Utility.Vector2;
 import WindowLogic.LevelInfo;
@@ -29,29 +31,38 @@ public class Player extends Entity{
 	private int playerAction = IDLE;
 	private int playerDir = 0;
 	private boolean moving = false;
-	
+	private boolean left, up, right, down,jump;
+	private float playerSpeed = 1.0f;
 	private Vector2 posOfshell;
+	private float xDrawOffeset = 1 * MainGame.SCALE;
+	private float yDrawOffeset = 1 * MainGame.SCALE;
+	
+	private int[][] lvlData;
 	
 	Dimension size;
 	
+	//Gravity
+	private float airSpeed = 0;
+	private float gravity = 0.04f * MainGame.SCALE;
+	private float jumpSpeed = -1.90f * MainGame.SCALE;
+	private float fallSpeedAfterCollision = 0.5f;
+	private boolean inAir = false;
 	
-	public Player(int x, int y) {
-		super(x, y);
+	
+	public Player(int x, int y, int width, int height) {
+		super(x, y,width,height);
 		size = Toolkit.getDefaultToolkit().getScreenSize(); ///dimensioni dello schermo
 		
 		loadAnimation();
-		
+		initHitbox(x, y, 12 * MainGame.SCALE,  15* MainGame.SCALE);
 	}
 	
 	public void update() {
-		setAnimation();
-		updateAnimationTick();
 		updatePos();
+		updateAnimationTick();
+		setAnimation();
 	}
 	
-	public void render(Graphics g) {
-		g.drawImage(animation[playerAction][aniIndex], x, y,152 / 3 ,192 / 3,null);
-	}
 	
 	private void loadAnimation() { ///metodo per leggere l'immagine del personaggio
 		
@@ -69,24 +80,62 @@ public class Player extends Entity{
 	
 	private void updatePos() {
 		// TODO Auto-generated method stub
-		if(moving) {
-			switch (playerDir) {
-			case LEFT:
-				x -= 1;
-				break;
-			case UP:
-				y -= 1;
-				break;
-			case RIGHR:
-				x += 1;
-				break;
-			case DOWN:
-				y += 1;
-				break;
-			default:
-				break;
+		moving = false;
+		if (jump && (!(hitbox.x <= 4) || !(hitbox.x >= MainGame.GAME_WIDTH - 4)))
+			jump();
+		if (!left && !right && !inAir)
+			return;
+		float xSpeed = 0;
+
+		if (left)
+			xSpeed -= playerSpeed;
+		if (right)
+			xSpeed += playerSpeed;
+
+		if (!inAir)
+			if (!HelperMethods.IsEntityOnFloor(hitbox, lvlData))
+				inAir = true;
+		if (inAir) {
+			if (HelperMethods.CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
+				hitbox.y += airSpeed;
+				airSpeed += gravity;
+				updateXPos(xSpeed);
+			} else {
+				hitbox.y = HelperMethods.GetEntityYPosUnderRoofOrAboveFloor(hitbox, airSpeed);
+				if (airSpeed > 0)
+					resetInAir();
+				else
+					airSpeed = fallSpeedAfterCollision;
+				updateXPos(xSpeed);
 			}
+
+		} else
+			updateXPos(xSpeed);
+		moving = true;
+
+	}
+	
+	private void jump() {
+		if (inAir)
+			return;
+		inAir = true;
+		airSpeed = jumpSpeed;
+
+	}
+	public void resetInAir() {
+		inAir = false;
+		airSpeed = 0;
+
+	}
+
+	private void updateXPos(float xSpeed) {
+		if (HelperMethods.CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)) {
+			hitbox.x += xSpeed;
 		}
+		if(hitbox.y > MainGame.GAME_HEIGHT + 50000) {
+			setPostion(200, 200);
+		}
+		
 	}
 
 	private void updateAnimationTick() {
@@ -100,7 +149,12 @@ public class Player extends Entity{
 				aniIndex = 0;
 		}
 	}
-	
+	public void resetDirBooleans() {
+		left = false;
+		right = false;
+
+	}
+
 	
 	public void setDireciotn(int direciotn) {
 		this.playerDir = direciotn;
@@ -122,19 +176,64 @@ public class Player extends Entity{
 
 	public void UpdateGraphics(Graphics g) {
 		if(animation[playerAction][aniIndex] != null) 
-			g.drawImage(animation[playerAction][aniIndex], x, y,(int)(152 / 7 * MainGame.SCALE),(int)(192 / 7 * MainGame.SCALE ),null);
+			g.drawImage(animation[playerAction][aniIndex], (int)(hitbox.x - xDrawOffeset), (int)(hitbox.y - yDrawOffeset),(int)(152 / 10 * MainGame.SCALE),(int)(192 / 10 * MainGame.SCALE ),null);
+		//drawHitBox(g);
 		
 	}
 	
 	
 	public void setPostion(int xa, int ya) {
-		super.x = xa;
-		super.y = ya;
+		hitbox.x = xa;
+		hitbox.y = ya;
 		updatePos();
 	}
 	
 	
 	public Vector2 getPostion() {
-		return new Vector2(x,y);
+		return new Vector2((int)hitbox.x,(int)hitbox.y);
 	}
+	
+	public void loadLevelData(int [][] lvlData) {
+		if(lvlData == null) System.out.println("ao lvl data e vuoto");
+		this.lvlData = lvlData;
+	}
+	
+
+
+	public boolean isLeft() {
+		return left;
+	}
+
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+
+	public boolean isUp() {
+		return up;
+	}
+
+	public void setUp(boolean up) {
+		this.up = up;
+	}
+
+	public boolean isRight() {
+		return right;
+	}
+
+	public void setRight(boolean right) {
+		this.right = right;
+	}
+
+	public boolean isDown() {
+		return down;
+	}
+
+	public void setDown(boolean down) {
+		this.down = down;
+	}
+	
+	public void setJump(boolean jump) {
+		this.jump = jump;
+	}
+
 }
