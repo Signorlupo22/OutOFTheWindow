@@ -2,11 +2,19 @@ package Utility;
 
 import java.awt.geom.Rectangle2D;
 
+import Entities.Player;
 import MainGame.MainGame;
 
 public class HelperMethods {
 	
-	public static boolean CanMoveHere(float x,float y, float width, float height, int [][] lvlData){
+	public static boolean CanMoveHere(float x,float y, float width, float height, int [][] lvlData, Player p){
+		
+		if(x <= 0 && !p.getHasEntery()){
+			return false;
+		}else if(x >= MainGame.GAME_WIDTH- width && !p.getHasExit()) {
+			return false;
+		}
+		
 		if(!isSolid(x, y, lvlData))
 			if(!isSolid(x+width, y +height, lvlData))
 				if(!isSolid(x + width, y, lvlData))
@@ -17,7 +25,7 @@ public class HelperMethods {
 	}
 	
 	private static boolean isSolid(float x, float y, int[][] lvlData) {
-		if(x <= 0 || x >= MainGame.GAME_HEIGHT ) return false;
+		if(x <= 0 || x >= MainGame.GAME_WIDTH ) return false;
 		if( y < 0 || y >= MainGame.GAME_HEIGHT) return true;
 		
 		float xIndex = x / MainGame.TILES_SIZE;

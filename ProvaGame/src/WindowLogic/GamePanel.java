@@ -36,8 +36,6 @@ public class GamePanel extends JPanel implements Runnable {
 	private Player p;
 	private LevelManager lvlDraw;
 	public GamePanel() {
-		
-		//ALTRO GAME LOOP PER OGNI SHELL CHE SARA UN GAME LOOP 
 	}
 	public GamePanel(MainGame m, Player p, LevelManager lvlDraw) {
 		this.lvlDraw = lvlDraw;
@@ -128,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable {
 					}
 					if(System.currentTimeMillis() - lastCheck >= 1000) {
 						lastCheck = System.currentTimeMillis();
-						System.out.println("FPS: " +frame + "| UPS : " +updates);
+						//System.out.println("FPS: " +frame + "| UPS : " +updates);
 						frame = 0;
 						updates = 0;
 					}

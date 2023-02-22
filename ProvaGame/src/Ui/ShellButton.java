@@ -34,19 +34,22 @@ public class ShellButton {
 			imgs[i] = temp.getSubimage(i * B_WIDTH_DEFAULT, rowIndex * B_HEIGHT_DEFAULT, B_WIDTH_DEFAULT, B_HEIGHT_DEFAULT);
 	}
 	
-	public void update() {
+	public int update() {
 		index = 0;
-		if (mouseOver)
+		if (mouseOver) {
 			index = 1;
+		}
 		if (mousePressed)
 			index = 2;
+		return index;
 	}
-	
+
 	public boolean isMouseOver() {
 		return mouseOver;
 	}
 	public void draw(Graphics g) {
-		g.drawImage(imgs[index], xPos - xOffsetCenter, yPos, null);
+		g.drawImage(imgs[index], xPos - xOffsetCenter, yPos ,bounds.width ,bounds.height , null);
+		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 	public void setMouseOver(boolean mouseOver) {
 		this.mouseOver = mouseOver;
@@ -67,6 +70,10 @@ public class ShellButton {
 	public void resetBools() {
 		mouseOver = false;
 		mousePressed = false;
+	}
+	public void doAction() {
+		setMousePressed(true);
+		
 	}
 
 }

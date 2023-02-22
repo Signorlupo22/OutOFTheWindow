@@ -27,10 +27,13 @@ public class ShellLevel {
 	private Player p;
 
 	
+	private int numShell = -1;
+	
 	public ShellLevel(GamePanel panel, int numShell, LevelInfo lvlInfo, Player p) {
 		this.panel = panel;
 		this.lvlInfo = lvlInfo;
 		this.p = p; 
+		this.numShell = numShell;
 		jframe = new JFrameLevl(numShell, panel,this.lvlInfo);
 		Dim = new Vector2(400,400);
 		pos = new Vector2(0,0);
@@ -49,7 +52,7 @@ public class ShellLevel {
 		jframe = new JFrameLevl(numShell, panel,this.lvlInfo);
 		Dim = new Vector2(400,400);
 		pos = new Vector2(0,0);
-		
+		this.numShell = numShell;
 		jframe.setLocation(pos);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.add(panel);
@@ -62,7 +65,7 @@ public class ShellLevel {
 	}
 	
 	
-	public ShellLevel(int xpos,int ypos, int xdim,int ydim, GamePanel panel, int num,LevelInfo lvlInfo, Player p) {
+	public ShellLevel(int xpos,int ypos, int xdim,int ydim, GamePanel panel, int num,LevelInfo lvlInfo, Player p, int numShell) {
 		//creo il frame (dentro ce anche il keyboard listener)
 		this.panel = panel;
 		this.lvlInfo = lvlInfo;
@@ -72,7 +75,7 @@ public class ShellLevel {
 		//creo i vector2
 		Dim = new Vector2(xdim,ydim);
 		pos = new Vector2(xpos,ypos);
-		
+		this.numShell = numShell;
 		//metto le dimesioni (con un Vector2 perche ho fatto un override della funzione)
 		//jframe.setSize(Dim, num, panel);
 		
@@ -100,8 +103,10 @@ public class ShellLevel {
 	}
 	public void SetFristPos() {
 		if(panel != null) {
-			panel.getPlayer().setPostion(-45, posDoor[0].getY());
-			
+			if(numShell == 0)
+				panel.getPlayer().setPostion(40, posDoor[0].getY());
+			else
+				panel.getPlayer().setPostion(posDoor[0].getX(), posDoor[0].getY());
 		}
 	}
 	

@@ -25,7 +25,7 @@ public class JFrameLevl extends JFrame {
 		this.gamePanel = gamePanel;
 		this.lvlInfo = lvlInfo;
 		
-		mouseInput = new MouseInputs(numShell, gamePanel);
+		//mouseInput = new MouseInputs(numShell, gamePanel);
 		
 		KeyboardInputs keyListener = new KeyboardInputs(numShell, this.gamePanel, lvlInfo);
 		
@@ -45,7 +45,7 @@ public class JFrameLevl extends JFrame {
 		KeyboardInputs keyListener = new KeyboardInputs(numShell,this.gamePanel,lvlInfo);
 		addKeyListener(keyListener);
 		this.lvlInfo = lvlInfo; 
-		mouseInput = new MouseInputs(numShell, gamePanel);
+		//mouseInput = new MouseInputs(numShell, gamePanel);
 		addMouseListener(mouseInput);
 		addMouseMotionListener(mouseInput);
 	}

@@ -48,6 +48,7 @@ public class Player extends Entity{
 	private float fallSpeedAfterCollision = 0.5f;
 	private boolean inAir = false;
 	
+	boolean HasEntery,HasExit;
 	
 	public Player(int x, int y, int width, int height) {
 		super(x, y,width,height);
@@ -96,7 +97,7 @@ public class Player extends Entity{
 			if (!HelperMethods.IsEntityOnFloor(hitbox, lvlData))
 				inAir = true;
 		if (inAir) {
-			if (HelperMethods.CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData)) {
+			if (HelperMethods.CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, lvlData, this)) {
 				hitbox.y += airSpeed;
 				airSpeed += gravity;
 				updateXPos(xSpeed);
@@ -129,7 +130,7 @@ public class Player extends Entity{
 	}
 
 	private void updateXPos(float xSpeed) {
-		if (HelperMethods.CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)) {
+		if (HelperMethods.CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData, this)) {
 			hitbox.x += xSpeed;
 		}
 		if(hitbox.y > MainGame.GAME_HEIGHT + 50000) {
@@ -235,5 +236,20 @@ public class Player extends Entity{
 	public void setJump(boolean jump) {
 		this.jump = jump;
 	}
-
+	public boolean getHasEntery() {
+		return HasEntery;
+	}
+	
+	public boolean getHasExit() {
+		return HasExit;
+	}
+	
+	
+	public void setHasEntery(boolean HasEntery) {
+		this.HasEntery = HasEntery;
+	}
+	
+	public void setHasExit(boolean HasExit) {
+		this.HasExit = HasExit;
+	}
 }
