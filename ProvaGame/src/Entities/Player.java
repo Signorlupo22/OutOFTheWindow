@@ -57,7 +57,7 @@ public class Player extends Entity{
 		loadAnimation();
 		initHitbox(x, y, 12 * MainGame.SCALE,  15* MainGame.SCALE);
 	}
-	
+
 	public void update() {
 		updatePos();
 		updateAnimationTick();

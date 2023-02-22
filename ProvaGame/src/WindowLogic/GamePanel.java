@@ -28,18 +28,14 @@ import static Utility.Constants.Direciotn.*;
 
 public class GamePanel extends JPanel implements Runnable {
 	int oneTime = 0;
-    private Image imageBuffer;
-    private Graphics graphicsBuffer;
-
-	private boolean moving = false;
-	protected MainGame m;
+	
 	private Player p;
 	private LevelManager lvlDraw;
+	
 	public GamePanel() {
 	}
-	public GamePanel(MainGame m, Player p, LevelManager lvlDraw) {
+	public GamePanel(Player p, LevelManager lvlDraw) {
 		this.lvlDraw = lvlDraw;
-		this.m = m;
 		this.p = p;
 		setPanelSize(); 
 		
@@ -63,12 +59,6 @@ public class GamePanel extends JPanel implements Runnable {
 		}
 	}
 	
-
-	
-	public MainGame getGame() {
-		return m;
-	}
-	
 	public void update(){
 		if(p != null)
 			p.update();
@@ -77,8 +67,6 @@ public class GamePanel extends JPanel implements Runnable {
 		repaint();
 	}
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
-		//prendere il player in base alla shell
 		return p;
 	}
 	public LevelManager getLevelManager() {

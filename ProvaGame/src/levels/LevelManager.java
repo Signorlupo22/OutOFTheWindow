@@ -2,20 +2,21 @@ package levels;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Iterator;
 
 import MainGame.MainGame;
+import Utility.Constants.LevelInfoStatic;
 import Utility.LoadSave;
 
 public class LevelManager {
-	private MainGame game;
 	private BufferedImage[] levelSprite;
 	private int num;
+	private int level;
 	private int lvl[][];
-	public LevelManager(MainGame game, int num) {
+	public LevelManager(int num, int level) {
 		
 		//levelSprite = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
 		this.num = num;
+		this.level = level; 
 		importSprite();
 	}
 	
@@ -33,7 +34,7 @@ public class LevelManager {
 	}
 
 	public void draw(Graphics g) { 
-		lvl = LoadSave.GetLevelData(LoadSave.LEVEL_ONE_DATA);
+		lvl = LoadSave.GetLevelData(LevelInfoStatic.PATHLEVEL1 + num );
 		if(lvl == null) return;
 		
 		for(int j = 0; j < MainGame.TILES_IN_HEIGHT ; j++) {

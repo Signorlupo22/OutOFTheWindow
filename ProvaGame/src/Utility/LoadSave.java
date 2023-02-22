@@ -39,7 +39,7 @@ public class LoadSave {
 	
 	public static int[][] GetLevelData(String level){
 		int[][] lvlData = new int[MainGame.TILES_IN_HEIGHT][MainGame.TILES_IN_WIDTH];
-		BufferedImage img = LoadSave.GetSpriteAtlas(level);
+		BufferedImage img = LoadSave.GetSpriteAtlas(level + ".png");
 		
 		for(int j = 0; j < MainGame.TILES_IN_HEIGHT ; j++) {
 			for (int i = 0; i < MainGame.TILES_IN_WIDTH ; i++) {

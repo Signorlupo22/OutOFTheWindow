@@ -23,7 +23,7 @@ public class ShellButton {
 		initBounds();
 	}
 	private void initBounds() {
-		bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
+		bounds = new Rectangle(xPos, yPos, B_WIDTH, B_HEIGHT);
 
 	}
 
@@ -48,7 +48,7 @@ public class ShellButton {
 		return mouseOver;
 	}
 	public void draw(Graphics g) {
-		g.drawImage(imgs[index], xPos - xOffsetCenter, yPos ,bounds.width ,bounds.height , null);
+		g.drawImage(imgs[index], bounds.x,  bounds.y ,bounds.width , bounds.height , null);
 		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 	public void setMouseOver(boolean mouseOver) {

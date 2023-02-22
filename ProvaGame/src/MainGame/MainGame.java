@@ -3,7 +3,9 @@ package MainGame; ///loop del gioco (chiama se stesso 200 volte al secondo. aggi
 import java.awt.Graphics;
 
 import Entities.Player;
+import Utility.Constants;
 import WindowLogic.LevelInfo;
+import static Utility.Constants.LevelInfoStatic.*;
 
 public class MainGame implements Runnable {
 	
@@ -22,7 +24,7 @@ public class MainGame implements Runnable {
 	
 	private Thread GameThread;
 	public final static int FPS_SET = 100;
-	private LevelInfo game1;
+	private LevelInfo level1;
 	public final static int UPS_SET = 200;
 	
 	
@@ -36,7 +38,7 @@ public class MainGame implements Runnable {
 	
 	public MainGame(){
 		//qua se ci sara se clicchi il play fara questo se no le altre classi con altri livelli
-		game1 = new LevelInfo(this);
+		level1 = new LevelInfo(this,LEVEL1_COUNT , POS_LEVEL1, 1 );
 		initClasses();
 		startGameLoop();
 		
@@ -54,8 +56,8 @@ public class MainGame implements Runnable {
 	
 
 	public void update() {
-		if(game1 != null)
-			game1.updateGame();
+		if(level1 != null)
+			level1.updateGame();
 	}
 	
 	public void render() {
