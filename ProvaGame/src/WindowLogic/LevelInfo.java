@@ -64,7 +64,7 @@ public class LevelInfo {
 		for(ShellLevel s : shell) {
 			player[i] = new Player(100,200,(int)(152 / 10 * MainGame.SCALE),(int)(191 / 10 * MainGame.SCALE) );
 			levelSprite[i] = new LevelManager(i, numLevel);
-			panel[i] = new GamePanel(player[i], levelSprite[i]); ///inizializza il motore grafico
+			panel[i] = new GamePanel(player[i], levelSprite[i], i+1); ///inizializza il motore grafico
 			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i,this, player[i], i);
 			
 			

@@ -29,11 +29,12 @@ public class Player extends Entity{
 	private BufferedImage[][] animation;
 	private int aniTick , aniIndex , aniSpeed = 5;
 	private int playerAction = IDLE;
-	private int playerDir = 0;
+	private int playerDir = 1;
 	private boolean moving = false;
 	private boolean left, up, right, down,jump;
 	private float playerSpeed = 1.0f;
-	private Vector2 posOfshell;
+
+	
 	private float xDrawOffeset = 1 * MainGame.SCALE;
 	private float yDrawOffeset = 1 * MainGame.SCALE;
 	
@@ -88,10 +89,14 @@ public class Player extends Entity{
 			return;
 		float xSpeed = 0;
 
-		if (left)
+		if (left) {
 			xSpeed -= playerSpeed;
-		if (right)
+			playerDir = -1;
+		}
+		if (right) {
 			xSpeed += playerSpeed;
+			playerDir = 1;
+		}
 
 		if (!inAir)
 			if (!HelperMethods.IsEntityOnFloor(hitbox, lvlData))
@@ -171,15 +176,11 @@ public class Player extends Entity{
 		else playerAction = IDLE;
 	}
 	
-	void updatePosOfShell(Vector2 pos) {
-		this.posOfshell = pos;
-	}
-
 	public void UpdateGraphics(Graphics g) {
 		if(animation[playerAction][aniIndex] != null) 
 			g.drawImage(animation[playerAction][aniIndex], (int)(hitbox.x - xDrawOffeset), (int)(hitbox.y - yDrawOffeset),(int)(152 / 10 * MainGame.SCALE),(int)(192 / 10 * MainGame.SCALE ),null);
 		//drawHitBox(g);
-		
+		//TODO gira in base a dove cammina
 	}
 	
 	

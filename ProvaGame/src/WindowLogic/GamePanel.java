@@ -20,6 +20,7 @@ import javax.swing.*;
 import Entities.Player;
 import Inputs.KeyboardInputs;
 import MainGame.MainGame;
+import Utility.LoadSave;
 import Utility.Vector2;
 import levels.LevelManager;
 
@@ -31,15 +32,23 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	private Player p;
 	private LevelManager lvlDraw;
+	private BufferedImage bg;
+	private int numShell;
 	
 	public GamePanel() {
 	}
-	public GamePanel(Player p, LevelManager lvlDraw) {
+	public GamePanel(Player p, LevelManager lvlDraw, int numShell) {
 		this.lvlDraw = lvlDraw;
 		this.p = p;
+		this.numShell = numShell;
 		setPanelSize(); 
-		
+		initBg();
 	}
+	
+	private void initBg() {
+		bg = LoadSave.GetSpriteAtlas(numShell + ".png");
+	}
+	
 	private void setPanelSize() {
 		Dimension size = new Dimension(MainGame.GAME_WIDTH,MainGame.GAME_HEIGHT);
 		setMaximumSize(size);
@@ -49,7 +58,11 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	public  void paintComponent(Graphics g) { ///aggiornamento della singola shell
 		if(g == null) return;
+		
 		super.paintComponent(g);
+		if(bg != null)
+			g.drawImage(bg, 0, 0, MainGame.GAME_WIDTH, MainGame.GAME_HEIGHT, null);
+		
 		if(lvlDraw != null) {
 			lvlDraw.draw(g);
 		}
@@ -57,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
 			//aggiorna il player
 			p.UpdateGraphics(g);
 		}
+		
 	}
 	
 	public void update(){

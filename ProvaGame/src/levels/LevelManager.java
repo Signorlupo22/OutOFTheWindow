@@ -24,11 +24,11 @@ public class LevelManager {
 		BufferedImage img = LoadSave.GetSpriteAtlas(LoadSave.LEVEL_ATLAS);
 		
 		levelSprite = new BufferedImage[112];
-		for(int j = 0; j < 4/*7*/ ; j++) {
-			for (int i = 0; i < 12/*16*/ ; i++) {
-				int index = j* 12/*16*/ + i;
-				//levelSprite[index] = img.getSubimage(i* 18, j * 18, 18, 18);
-				levelSprite[index] = img.getSubimage(i* 32, j * 32, 32, 32);
+		for(int j = 0; j < 7 ; j++) {
+			for (int i = 0; i < 16 ; i++) {
+				int index = j* 16 + i;
+				levelSprite[index] = img.getSubimage(i* 18, j * 18, 18, 18);
+				//levelSprite[index] = img.getSubimage(i* 32, j * 32, 32, 32);
 			}
 		}
 	}

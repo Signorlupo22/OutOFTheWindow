@@ -46,7 +46,7 @@ public class LoadSave {
 				Color color = new Color(img.getRGB(i, j));
 				
 				int value = color.getRed();
-				if(value >= 48) value = 0;
+				if(value >= 128) value = 0;
 				
 				lvlData[j][i] = value;
 			}
