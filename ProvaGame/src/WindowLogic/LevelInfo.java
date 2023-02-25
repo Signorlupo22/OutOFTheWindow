@@ -92,7 +92,7 @@ public class LevelInfo {
 				i++; 
 			}
 		}
-		Vector2 pos = new Vector2(posOfShell[index1].getX() + MainGame.GAME_WIDTH + 10, posOfShell[index1].getY());
+		Vector2 pos = new Vector2(posOfShell[index1].getX() + MainGame.GAME_WIDTH + 30, posOfShell[index1].getY());
 		shell[index2].jframe.setLocation(pos);
 	}
 	
