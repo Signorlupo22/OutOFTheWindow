@@ -43,7 +43,7 @@ public class LevelInfo {
 	int tryCange2 = -1;
 	
 	
-	public LevelInfo( MainGame m, int shellCoutn, Vector2[] pos, int numLevel) { ///costruttore di default
+	public LevelInfo( MainGame m, int shellCoutn, Vector2[] pos, int numLevel, int levelnum) { ///costruttore di default
 		
 		this.shellCount = shellCoutn;
 		this.posOfShell = pos;
@@ -65,7 +65,7 @@ public class LevelInfo {
 			player[i] = new Player(100,200,(int)(152 / 10 * MainGame.SCALE),(int)(191 / 10 * MainGame.SCALE) );
 			levelSprite[i] = new LevelManager(i, numLevel);
 			panel[i] = new GamePanel(player[i], levelSprite[i], i+1); ///inizializza il motore grafico
-			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i,this, player[i], i);
+			shell[i] = new ShellLevel(posOfShell[i].getX() ,posOfShell[i].getY() ,400,400,panel[i],i,this, player[i], i, levelnum);
 			
 			
 			//start ogni singolo thread
