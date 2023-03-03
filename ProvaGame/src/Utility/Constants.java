@@ -44,10 +44,14 @@ public class Constants {
 		public static final Player player = new Player(100,200,(int)(152 / 10 * MainGame.SCALE),(int)(191 / 10 * MainGame.SCALE) );
 		
 		//LEVEL 1 INFO
-		public static final Vector2[] POS_LEVEL1 = {new Vector2(100,100),new Vector2(500,400),new Vector2(900,700),new Vector2(1400,500),};
+		public static final Vector2[] POS_LEVEL1 = {new Vector2(100,100),new Vector2(500,400)};
 		public static final int LEVEL1_COUNT = 2;
 		public static String PATHLEVEL1 = "level_one_data";
-		
+		//porte livello 1
+		public static final Vector2 PORTE_LEVEL1[][] = {
+				{new Vector2((int)(-23 * MainGame.SCALE),MainGame.TILES_SIZE * 9 +3),new Vector2((int)(216 * MainGame.SCALE),MainGame.TILES_SIZE * 9 +3)},
+				{new Vector2((int)(-23 * MainGame.SCALE),MainGame.TILES_SIZE * 9 +3),new Vector2((int)(216 * MainGame.SCALE),MainGame.TILES_SIZE * 7 +3)},
+		};
 		
 		//LEVEL 2 INFO
 		public static final Vector2[] POS_LEVEL2 = {new Vector2(100,100),new Vector2(500,400),new Vector2(900,700),new Vector2(1400,500),};
