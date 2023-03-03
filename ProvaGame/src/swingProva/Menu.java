@@ -73,6 +73,9 @@ public class Menu extends Thread {
 				case 4:
 					panel[4].paintLogoMenu(-750, -200, 1050, 900);
 					break;
+				case 5:
+					panel[5].paintPlay(-10, -10, 320, 120);
+					break;
 			}
 			try {
 				Thread.sleep(DELAY);

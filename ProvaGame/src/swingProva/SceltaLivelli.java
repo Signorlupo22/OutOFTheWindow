@@ -45,15 +45,16 @@ public class SceltaLivelli extends Thread{
 
 			switch (i) {
 				case 0:
-					panel[0].paint1(0, 0, DIMENSIONE, DIMENSIONE);
+					panel[0].paintSceltaLevel(0, 0, DIMENSIONE, DIMENSIONE,1);
 					break;
 				case 1:
-					panel[1].paintLogoMenu(0, 0, DIMENSIONE, DIMENSIONE);
+					panel[1].paintSceltaLevel(0, 0, DIMENSIONE, DIMENSIONE,2);
 					break;
 				case 2:
-					panel[2].paintLogoMenu(0, 0, DIMENSIONE, DIMENSIONE);
+					panel[2].paintSceltaLevel(0, 0, DIMENSIONE, DIMENSIONE,3);
 					break;
 			}
+			
 			try {
 				Thread.sleep(800);
 			} catch (InterruptedException e) {
