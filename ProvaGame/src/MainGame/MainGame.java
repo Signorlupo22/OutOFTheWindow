@@ -38,7 +38,7 @@ public class MainGame implements Runnable {
 	
 	public MainGame(){
 		//qua se ci sara se clicchi il play fara questo se no le altre classi con altri livelli
-		level1 = new LevelInfo(this,LEVEL1_COUNT , POS_LEVEL1, 1 );
+		level1 = new LevelInfo(this,LEVEL1_COUNT , POS_LEVEL1, 1 ,1 );
 		initClasses();
 		startGameLoop();
 		
