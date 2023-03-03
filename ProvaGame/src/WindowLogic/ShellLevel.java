@@ -65,7 +65,7 @@ public class ShellLevel {
 	}
 	
 	
-	public ShellLevel(int xpos,int ypos, int xdim,int ydim, GamePanel panel, int num,LevelInfo lvlInfo, Player p, int numShell) {
+	public ShellLevel(int xpos,int ypos, int xdim,int ydim, GamePanel panel, int num,LevelInfo lvlInfo, Player p, int numShell,int levelnum) {
 		//creo il frame (dentro ce anche il keyboard listener)
 		this.panel = panel;
 		this.lvlInfo = lvlInfo;
@@ -91,10 +91,22 @@ public class ShellLevel {
 		
 		//la rendo visibile
 		jframe.setVisible(true);
+		getInfoLevel(levelnum,numShell);
 		SetFristPos();
 	}
 	
-	
+	private void getInfoLevel(int levelInfo, int numshell) {
+		switch (levelInfo) {
+		case 1: {
+			posDoor = Constants.LevelInfoStatic.PORTE_LEVEL1[numshell];
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + levelInfo);
+		}
+		
+	}
+
 	public void PlayerEntra() {
 		if(panel != null) {
 			panel.getPlayer().setPostion(posDoor[0].getX(), posDoor[0].getY());
