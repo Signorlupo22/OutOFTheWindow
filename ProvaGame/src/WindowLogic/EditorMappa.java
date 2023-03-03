@@ -40,7 +40,7 @@ public class EditorMappa extends GamePanel{
 		
 		requestFocus();
 		for (int i = 0; i < buttons.length; i++) {
-			buttons[i] = new ShellButton(200 * i + 100, 200, i);
+			buttons[i] = new ShellButton((int)((100 * i * MainGame.SCALE) + 20 * MainGame.SCALE) , (int)(20 * MainGame.SCALE), i);
 		}
 	}
 	

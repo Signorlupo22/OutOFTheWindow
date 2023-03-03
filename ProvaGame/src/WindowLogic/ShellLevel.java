@@ -29,24 +29,6 @@ public class ShellLevel {
 	
 	private int numShell = -1;
 	
-	public ShellLevel(GamePanel panel, int numShell, LevelInfo lvlInfo, Player p) {
-		this.panel = panel;
-		this.lvlInfo = lvlInfo;
-		this.p = p; 
-		this.numShell = numShell;
-		jframe = new JFrameLevl(numShell, panel,this.lvlInfo);
-		Dim = new Vector2(400,400);
-		pos = new Vector2(0,0);
-		
-		jframe.setLocation(pos);
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jframe.add(panel);
-		jframe.setResizable(false);
-		jframe.pack();
-		jframe.setVisible(true);
-		SetFristPos();
-	}
-	
 	public ShellLevel(EditorMappa panel, int numShell, LevelInfo lvlInfo) {
 		this.lvlInfo = lvlInfo;
 		jframe = new JFrameLevl(numShell, panel,this.lvlInfo);
@@ -94,6 +76,7 @@ public class ShellLevel {
 		getInfoLevel(levelnum,numShell);
 		SetFristPos();
 	}
+	
 	
 	private void getInfoLevel(int levelInfo, int numshell) {
 		switch (levelInfo) {

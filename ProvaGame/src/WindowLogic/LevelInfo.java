@@ -18,7 +18,7 @@ import java.awt.*;
 
 public class LevelInfo {
 	//Sinsgole shell con le informazioni delle porte pos del player ecc|| editor shell quella dove attachi la shell
-	private ShellLevel shell[], editorShell;
+	private ShellLevel shell[], editorShell,timer;
 	private EditorMappa editor;
 	//motore grafico di ogni shell infatti dentro ad ogni ce un thread
 	private GamePanel panel[];
@@ -75,6 +75,7 @@ public class LevelInfo {
 		} 
 		
 		editorShell = new ShellLevel(editor, i,this);
+		timer = new ShellLevel();
 		
 		
 	}
