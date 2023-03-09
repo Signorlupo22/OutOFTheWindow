@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Menu extends Thread {
 
 	static int LARGHEZZA = -120;
-	final static int nFrame = 7;
+	final static int nFrame = 8;
 	static int DELAY=200;
 	private JFrame[] frame = new JFrame[nFrame];
 	private GamePanel[] panel = new GamePanel[nFrame];
@@ -43,6 +43,8 @@ public class Menu extends Thread {
 		frame[5].setSize(300, 100);
 		frame[6].setLocation(screenSize.width / 2 + 300 + LARGHEZZA, screenSize.height / 2 + 420);
 		frame[6].setSize(300, 100);
+		frame[7].setLocation(screenSize.width / 2 + 300 + LARGHEZZA, 4);
+		frame[7].setSize(0, 0);
 
 		frame[2].setUndecorated(true);
 		frame[4].setUndecorated(true);
@@ -83,6 +85,8 @@ public class Menu extends Thread {
 				e.printStackTrace();
 			}
 		}
+		
+		frame[7].dispose();
 	}
 	
 	/*public void setMenu() {
