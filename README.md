@@ -15,5 +15,11 @@ COSE DA FINIRE:
 
 -immagini livello 2 3
 
+-connessione menu a classifica
+
+-connessione menu a setting
+
+-connessione sceltaliv1 a livello1
+
 
 
