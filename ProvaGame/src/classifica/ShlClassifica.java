@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.image.*;
@@ -30,15 +31,15 @@ public class ShlClassifica {
 			shells[i]=new JFrame();
 		}
 		
-		shells[0].setSize(250,350); //1 posto
-		shells[1].setSize(250,300);	//2 posto
-		shells[2].setSize(250,270);	//3 posto
+		shells[0].setSize(300,420); //1 posto
+		shells[1].setSize(300,350);	//2 posto
+		shells[2].setSize(300,300);	//3 posto
 		shells[3].setSize(660,440);	//gli altri
 		  
 		shells[0].setLocation(screenSize.width/2 - 350/2, 0+100);		
-		shells[1].setLocation(shells[0].getLocation().x - 220, 50+100);
-		shells[2].setLocation(shells[0].getLocation().x + 250, 80+100);
-		shells[3].setLocation(shells[0].getLocation().x-220,500);
+		shells[1].setLocation(shells[0].getLocation().x - 300, 170);
+		shells[2].setLocation(shells[0].getLocation().x + 300, 220);
+		shells[3].setLocation(shells[0].getLocation().x-190,520);
 		
 		
 		shells[0].setTitle("Primo posto");
@@ -48,135 +49,115 @@ public class ShlClassifica {
 		
 		tmp = LoadSave.GetSpriteAtlas("Map.png");
 		JLabel tableBG= new JLabel(new ImageIcon(tmp));	
-		
-		/*tmp = LoadSave.GetSpriteAtlas("gold.png");
-		Image goldImg = tmp.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
-		JLabel goldMedal= new JLabel(new ImageIcon(goldImg));
-		goldMedal.setSize(250,350);
-		goldMedal.setLayout(null);
-		JLabel nome=new JLabel(c.getPartitaById(0).getNome());
-		nome.setFont(new Font("Citystencil",0,30));
-		nome.setForeground(Color.orange);
-		nome.setBounds(10,20,nome.getPreferredSize().width,nome.getPreferredSize().height);
-		
 				
-		cent=c.getPartitaById(0).getTempo();
-		sec=cent/100;
-		cent%=100;
-		min=sec/60;
-		sec%=60;
-		
-		JLabel tempo=new JLabel(min+" "+sec+" "+cent);
-		tempo.setFont(new Font("Citystencil",0,30));
-		tempo.setForeground(Color.orange);
-		goldMedal.add(nome);
-		goldMedal.add(tempo);
-		shells[0].add((goldMedal), null);
-		shells[0].pack();
-		
-		
-		*/
-		
 		
 		//shell gold
-		JPanel contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(0,0,0,0));
-
-		shells[0].setContentPane(contentPane);
-		contentPane.setLayout(null);
+		JPanel contentPaneGold = new JPanel();
 		
 		cent=c.getPartitaById(0).getTempo();
 		sec=cent/100;
 		cent%=100;
 		min=sec/60;
-		sec%=60;
+		sec%=60;	
 		
+		shells[0].setResizable(false);
+		contentPaneGold = new JPanel();
+		contentPaneGold.setBorder(new EmptyBorder(0,0,0,0));
+
+		shells[0].setContentPane(contentPaneGold);
+		contentPaneGold.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(c.getPartitaById(0).getNome());
-		lblNewLabel.setForeground(new Color(255, 140, 0));
-		lblNewLabel.setFont(new Font("CityStencil", Font.PLAIN, 18));
-		lblNewLabel.setBounds(26, 116, 124, 42);
-		contentPane.add(lblNewLabel);
+		JLabel nameGold = new JLabel(c.getPartitaById(0).getNome());
+		nameGold.setForeground(new Color(255, 140, 0));
+		nameGold.setFont(new Font("CityStencil", Font.PLAIN, 30));
+		nameGold.setBounds(95, 280, 191, 42);
+		contentPaneGold.add(nameGold);
 		
 		BufferedImage tmp = LoadSave.GetSpriteAtlas("gold.png");
-		Image goldImg = tmp.getScaledInstance(250,350, Image.SCALE_SMOOTH);
 		
-		JLabel lblTempoXY = new JLabel(min+" "+sec+" "+cent);
-		lblTempoXY.setForeground(new Color(255, 140, 0));
-		lblTempoXY.setFont(new Font("CityStencil", Font.PLAIN, 18));
-		lblTempoXY.setBounds(12, 149, 124, 42);
-		contentPane.add(lblTempoXY);
-		JLabel lblNewLabel_1 = new JLabel(new ImageIcon(goldImg));
-		lblNewLabel_1.setBounds(0, 0, shells[0].getSize().width, shells[0].getSize().height);
-		contentPane.add(lblNewLabel_1);
+		JLabel timeGold = new JLabel(min+" "+sec+" "+cent);
+		timeGold.setForeground(new Color(255, 140, 0));
+		timeGold.setFont(new Font("CityStencil", Font.PLAIN, 30));
+		timeGold.setBounds(95, 333, 191, 50);
+		contentPaneGold.add(timeGold);
+		JLabel BGGold = new JLabel(new ImageIcon(tmp));
+		BGGold.setBounds(0, 0, 296, 400);
+		contentPaneGold.add(BGGold);
 	
 
 
 		//shell silver
-		JPanel contentPane2 = new JPanel();
-		contentPane2.setBorder(new EmptyBorder(0,0,0,0));
-
-		shells[1].setContentPane(contentPane2);
-		contentPane2.setLayout(null);
+		JPanel contentPaneSilver = new JPanel();
 		
 		cent=c.getPartitaById(1).getTempo();
 		sec=cent/100;
 		cent%=100;
 		min=sec/60;
-		sec%=60;
+		sec%=60;	
 		
+		shells[1].setResizable(false);
+		contentPaneSilver = new JPanel();
+		contentPaneSilver.setBorder(new EmptyBorder(0,0,0,0));
+
+		shells[1].setContentPane(contentPaneSilver);
+		contentPaneSilver.setLayout(null);
 		
-		JLabel lblNewLabel2 = new JLabel(c.getPartitaById(1).getNome());
-		lblNewLabel2.setForeground(new Color(255, 140, 0));
-		lblNewLabel2.setFont(new Font("CityStencil", Font.PLAIN, 18));
-		lblNewLabel2.setBounds(26, 116, 124, 42);
-		contentPane2.add(lblNewLabel2);
+		JLabel nameSilver = new JLabel(c.getPartitaById(1).getNome());
+		nameSilver.setHorizontalAlignment(SwingConstants.CENTER);
+		nameSilver.setForeground(new Color(255, 140, 0));
+		nameSilver.setFont(new Font("CityStencil", Font.PLAIN, 30));
+		nameSilver.setBounds(0, 0, 296, 42);
+		contentPaneSilver.add(nameSilver);
 		
 		tmp = LoadSave.GetSpriteAtlas("silver.png");
-		Image silverImg = tmp.getScaledInstance(250,350, Image.SCALE_SMOOTH);
 		
-		JLabel lblTempoXY2 = new JLabel(min+" "+sec+" "+cent);
-		lblTempoXY2.setForeground(new Color(255, 140, 0));
-		lblTempoXY2.setFont(new Font("CityStencil", Font.PLAIN, 18));
-		lblTempoXY2.setBounds(12, 149, 124, 42);
-		contentPane2.add(lblTempoXY2);
-		JLabel lblNewLabel_12 = new JLabel(new ImageIcon(silverImg));
-		lblNewLabel_12.setBounds(0, 0, shells[1].getSize().width, shells[1].getSize().height);
-		contentPane2.add(lblNewLabel_12);
+		JLabel timeSilver = new JLabel(min+" "+sec+" "+cent);
+		timeSilver.setHorizontalAlignment(SwingConstants.CENTER);
+		timeSilver.setForeground(new Color(255, 140, 0));
+		timeSilver.setFont(new Font("CityStencil", Font.PLAIN, 30));
+		timeSilver.setBounds(0, 29, 296, 50);
+		contentPaneSilver.add(timeSilver);
+		JLabel BGSilver = new JLabel(new ImageIcon(tmp));
+		BGSilver.setBounds(0, 0, 296, 350);
+		contentPaneSilver.add(BGSilver);
 		
 		
 		
 		//shell bronze
-		JPanel contentPane3 = new JPanel();
-		contentPane3.setBorder(new EmptyBorder(0,0,0,0));
-
-		shells[2].setContentPane(contentPane3);
-		contentPane3.setLayout(null);
+		JPanel contentPaneBronze = new JPanel();
 		
 		cent=c.getPartitaById(2).getTempo();
 		sec=cent/100;
 		cent%=100;
 		min=sec/60;
-		sec%=60;
+		sec%=60;	
 		
+		shells[2].setResizable(false);
+		contentPaneBronze = new JPanel();
+		contentPaneBronze.setBorder(new EmptyBorder(0,0,0,0));
+
+		shells[2].setContentPane(contentPaneBronze);
+		contentPaneBronze.setLayout(null);
 		
-		JLabel lblNewLabel3 = new JLabel(c.getPartitaById(2).getNome());
-		lblNewLabel3.setForeground(new Color(255, 140, 0));
-		lblNewLabel3.setFont(new Font("CityStencil", Font.PLAIN, 18));
-		lblNewLabel3.setBounds(26, 116, 124, 42);
-		contentPane3.add(lblNewLabel3);
+		JLabel nameBronze = new JLabel(c.getPartitaById(2).getNome());
+		nameBronze.setHorizontalAlignment(SwingConstants.CENTER);
+		nameBronze.setForeground(new Color(255, 140, 0));
+		nameBronze.setFont(new Font("CityStencil", Font.PLAIN, 30));
+		nameBronze.setBounds(0, 0, 296, 42);
+		contentPaneBronze.add(nameBronze);
 		
 		tmp = LoadSave.GetSpriteAtlas("bronze.png");
-		Image bronzeImg = tmp.getScaledInstance(250,350, Image.SCALE_SMOOTH);
 		
-		JLabel lblTempoXY3 = new JLabel(min+" "+sec+" "+cent);
-		lblTempoXY3.setForeground(new Color(255, 140, 0));
-		lblTempoXY3.setFont(new Font("CityStencil", Font.PLAIN, 18));
-		lblTempoXY3.setBounds(12, 149, 124, 42);
-		contentPane3.add(lblTempoXY3);
-		JLabel lblNewLabel_13 = new JLabel(new ImageIcon(bronzeImg));
-		lblNewLabel_13.setBounds(0, 0, shells[2].getSize().width, shells[2].getSize().height);
-		contentPane3.add(lblNewLabel_13);
+		JLabel timeBronze = new JLabel(min+" "+sec+" "+cent);
+		timeBronze.setHorizontalAlignment(SwingConstants.CENTER);
+		timeBronze.setForeground(new Color(255, 140, 0));
+		timeBronze.setFont(new Font("CityStencil", Font.PLAIN, 30));
+		timeBronze.setBounds(0, 29, 296, 50);
+		contentPaneBronze.add(timeBronze);
+		JLabel BGBronze = new JLabel(new ImageIcon(tmp));
+		BGBronze.setBounds(0, 0, 296, 300);
+		contentPaneBronze.add(BGBronze);
+		
 		
 		
 		///tabella con tutta la classifica
@@ -193,6 +174,7 @@ public class ShlClassifica {
 		table.setForeground(Color.white);
 		table.setFont(new Font("Citystencil",0,25));
 		table.setRowHeight(33);
+		table.setEnabled(false);
 		
 		
         
@@ -211,6 +193,7 @@ public class ShlClassifica {
 		shells[3].add(tableBG);
 
 		
+		shells[3].setResizable(false);
 		
         for(int i=0;i<4;i++) {
 			shells[i].setVisible(true);
