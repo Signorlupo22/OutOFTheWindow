@@ -19,7 +19,7 @@ COSE DA FINIRE:
 
 -connessione menu a setting
 
--connessione sceltaliv1 a livello1
+-✅connessione sceltaliv1 a livello1
 
 
 
