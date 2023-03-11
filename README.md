@@ -7,11 +7,11 @@ COSE DA FINIRE:
 
 -shell setting
 
--posizione sceltaLivelli
+-✅posizione sceltaLivelli
 
--caricamento immagini
+-✅caricamento immagini
 
--immagine logo strecciata
+-✅immagine logo strecciata
 
 -immagini livello 2 3
 
