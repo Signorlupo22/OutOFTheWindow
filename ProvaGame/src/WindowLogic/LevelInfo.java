@@ -39,6 +39,8 @@ public class LevelInfo {
 	Player player[];
 	//semaforo per accedere alle imamgine un thread alla volta
 	public static Semaphore semaphore = new Semaphore(1);
+	
+	public int tempoTot;
 
 	int tryCange = -1;		
 	int tryCange2 = -1;
@@ -123,10 +125,10 @@ public class LevelInfo {
 	
 	private void checkFinish() {
 		if(player[activePlayer].getPostion().getX() > 160 * MainGame.SCALE && activePlayer == shellCount -1 && finish) {
-			System.out.println(finishLevel());
+			tempoTot=(int) finishLevel();
+			System.out.println(tempoTot);
 			finish = false;
 			timer.stopTimer();
-			
 		}
 		
 	}

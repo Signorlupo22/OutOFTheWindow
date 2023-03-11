@@ -1,19 +1,24 @@
 package menu;
 
+import static Utility.Constants.LevelInfoStatic.LEVEL1_COUNT;
+import static Utility.Constants.LevelInfoStatic.POS_LEVEL1;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
 
+import MainGame.MainGame;
+import WindowLogic.LevelInfo;
 import classifica.*;
 
 public class FrameSelectionListener implements WindowFocusListener {
-	private static int sceltaClassifica=0, scelta=0;
+	private static int sceltaClassifica=0, scelta=0, sceltaLV=0;
 	private Menu menu2;
-	private SceltaLivelli livelli;
 	private SceltaClassifica classifica;
 	private String nomePlayer=null;
 	public VetClassifica v = VetClassifica.load("classifiche.bin");
+	private SceltaLivelli s;
 	
 	/*
 	public void setMenu() {
@@ -25,7 +30,7 @@ public class FrameSelectionListener implements WindowFocusListener {
 		menu2=m;
 	}
 	public FrameSelectionListener(SceltaLivelli l) {
-		livelli=l;
+		s=l;
 	}
 	public FrameSelectionListener(SceltaClassifica c) {
 		classifica=c;
@@ -72,18 +77,31 @@ public class FrameSelectionListener implements WindowFocusListener {
 					break;
 				case"frameLV1":
 					System.out.println("Hai selezionato il frameLV1");
-					scelta++;
-					if(scelta>2) {
-						//livelli.closeAll();
-						//SceltaLivelli s = new SceltaLivelli();
-						//livelli.start();
+					sceltaLV++;
+					if(sceltaLV>3) {
+						
+						try {
+							s.closeAlla();
+						} catch (Exception e2) {
+							// TODO Auto-generated catch block
+							System.out.println("errore s close");
+						}
+						
+						try {
+							s.join();
+						} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						MainGame mainGame = new MainGame();
 					}
 					break;
 				case"frameLV2":
-					scelta++;
+					sceltaLV++;
 					System.out.println("Hai selezionato il frameLV2");
 					break;
 				case"frameLV3":
+					sceltaLV++;
 					System.out.println("Hai selezionato il frameLV3");
 					//scelta++;
 					break;
@@ -148,7 +166,7 @@ public class FrameSelectionListener implements WindowFocusListener {
 	public void AvvioScelta(String nome) {
 		nomePlayer=nome;
 		System.err.println(nomePlayer);
-		SceltaLivelli s = new SceltaLivelli();
+		s = new SceltaLivelli();
 		s.start();
 	}
 	public void AvvioSceltaCla() {

@@ -1,4 +1,4 @@
-package menu;
+package swingProva;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -64,7 +64,7 @@ public class SceltaLivelli extends Thread{
 		
 	}
 	
-	public void closeAlla() {
+	public void closeAll() {
 		for (int i = 0; i < nFrame; i++) {
 			frame[i].dispose();
 		}
