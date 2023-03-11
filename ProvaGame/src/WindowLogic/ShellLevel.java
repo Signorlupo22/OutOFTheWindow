@@ -7,8 +7,7 @@ import MainGame.MainGame;
 import Utility.*;
 
 public class ShellLevel {
-	//path dell immagine del livello (qua faro una cosa un po complessa)
-	private final String path ="";
+
 	//shell
 	protected JFrameLevl jframe;
 	//poszione della shell
