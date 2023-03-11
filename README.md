@@ -21,5 +21,6 @@ COSE DA FINIRE:
 
 -✅connessione sceltaliv1 a livello1
 
+-salvare la classifica
 
 
