@@ -75,7 +75,7 @@ public class LevelInfo {
 		} 
 		
 		editorShell = new ShellLevel(editor, i,this);
-		timer = new ShellLevel();
+		//timer = new ShellLevel();
 		
 		
 	}
