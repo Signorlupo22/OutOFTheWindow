@@ -18,7 +18,8 @@ import java.awt.*;
 
 public class LevelInfo {
 	//Sinsgole shell con le informazioni delle porte pos del player ecc|| editor shell quella dove attachi la shell
-	private ShellLevel shell[], editorShell,timer;
+	private ShellLevel shell[], editorShell;
+	private ShellTimer timer;
 	private EditorMappa editor;
 	//motore grafico di ogni shell infatti dentro ad ogni ce un thread
 	private GamePanel panel[];
@@ -42,6 +43,8 @@ public class LevelInfo {
 	int tryCange = -1;		
 	int tryCange2 = -1;
 	
+	private long totalTime = 0;
+	boolean finish = true;
 	
 	public LevelInfo( MainGame m, int shellCoutn, Vector2[] pos, int numLevel, int levelnum) { ///costruttore di default
 		
@@ -54,7 +57,7 @@ public class LevelInfo {
 		shell = new ShellLevel[shellCount]; ///crea le varie shell
 		panel = new GamePanel[shellCount]; ///grafica delle shell (Thomas dice motore grafico e io sorride� e annuir� senza capire)
 		levelSprite = new LevelManager[shellCount]; // disegnatore di livello
-		thread = new Thread[shellCount]; //inizillizo il thread
+		thread = new Thread[shellCount + 1]; //inizillizo il thread
 		editor = new EditorMappa(shellCount); ///crea una shell editor
 		player = new Player[shellCoutn];
 		
@@ -75,8 +78,10 @@ public class LevelInfo {
 		} 
 		
 		editorShell = new ShellLevel(editor, i,this);
-		//timer = new ShellLevel();
-		
+		totalTime = System.currentTimeMillis();
+		timer = new ShellTimer(totalTime);
+		thread[thread.length-1] = new Thread(timer);
+		thread[thread.length-1].start();
 		
 	}
 	
@@ -101,6 +106,7 @@ public class LevelInfo {
 	public void updateGame() {
 		//update
 		editor.update();
+		
 		if(editor.getCollegamenti()!= null &&editor.getCollegamenti().getY() != -1 ) {
 			SnapShell(editor.getCollegamenti().getX(),editor.getCollegamenti().getY());
 			
@@ -108,8 +114,28 @@ public class LevelInfo {
 		
 		//editor shell dovrebbe dire quali sono collegate. sta in basso a dx
 		editorShell.jframe.setLocation(size.width - 650,size.height - 500);
+		checkFinish();
+
+		//if(finish)
+		//	timer.updateTimer();
+		
 	}
 	
+	private void checkFinish() {
+		if(player[activePlayer].getPostion().getX() > 160 * MainGame.SCALE && activePlayer == shellCount -1 && finish) {
+			System.out.println(finishLevel());
+			finish = false;
+			timer.stopTimer();
+			
+		}
+		
+	}
+	
+	public long finishLevel() {
+		//totalTime in millis
+		totalTime = (System.currentTimeMillis() - totalTime)/10;
+		return totalTime;
+	}
 
 	public Player getPlayer() {
 		setEntery();
